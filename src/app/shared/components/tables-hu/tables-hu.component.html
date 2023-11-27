@@ -1,0 +1,43 @@
+<!-- Bootstrap Table with Header - Footer -->
+<div class="card">
+  <h5 class="card-header">
+    <div class="row">
+      <div class="col-md-6">
+        {{ tituloTabla }}
+      </div>
+      <div class="col-md-6 d-flex justify-content-end">
+        <div class="input-group input-group-merge">
+          <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
+          <input type="text" class="form-control" placeholder="Búscar Sobre Tus Resultados." placement="top"
+            ngbTooltip="Busca sobre tus resultados!" [(ngModel)]="searchText"
+            oninput="this.value = this.value.toUpperCase()"/>
+          <button class="btn btn-danger" data-bs-toggle="tooltip" title="Limpiar filtro" (click)="limpiarFiltro();"
+            placement="right" ngbTooltip="Limpiar filtro"><i class='bx bxs-eraser'></i></button>
+        </div>
+      </div>
+    </div>
+  </h5>
+  <div class="table-responsive text-nowrap">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let cabecera of cabecerasYfooterTabla">{{ cabecera }}</th>
+        </tr>
+      </thead>
+      <tbody class="table-border-bottom-0">
+        <tr *ngFor="let cuerpo of cuerpoTabla | buscadorHu : searchText">
+          <td>{{ cuerpo.CHRCURCODIGO }}</td>
+          <td>{{ cuerpo.VCHTCUDESCRIPCION }}</td>
+          <td>{{ cuerpo.VCHCURDESCRIPCION1 }}</td>
+          <td>{{ cuerpo.CHRCURESTADO }}</td>
+        </tr>
+      </tbody>
+      <tfoot class="table-border-bottom-0">
+        <tr>
+          <th *ngFor="let cabecera of cabecerasYfooterTabla">{{ cabecera }}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+<!-- Bootstrap Table with Header - Footer -->

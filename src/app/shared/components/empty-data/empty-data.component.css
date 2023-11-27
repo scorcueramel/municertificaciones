@@ -1,0 +1,12 @@
+.img{
+  max-width: 90px;
+  margin-bottom: 20px;
+}
+
+.texto{
+  font-size: 18px;
+}
+
+.bx-data, .texto {
+  color: #9DB2BF;
+}

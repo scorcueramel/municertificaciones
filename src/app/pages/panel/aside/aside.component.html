@@ -1,0 +1,93 @@
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+  <div class="app-brand demo">
+    <a [routerLink]="['/panel']" class="app-brand-link">
+      <span class="app-brand-logo demo">
+        <img src="./assets/img/Logo-municipalidad.png" alt="MSS" class="logo-brand">
+      </span>
+      <!-- <span class="app-brand-text demo menu-text fw-bolder ms-2">SISNUMCERT</span> -->
+    </a>
+
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+      <i class="bx bx-chevron-left bx-sm align-middle"></i>
+    </a>
+  </div>
+
+  <div class="menu-inner-shadow"></div>
+
+  <ul class="menu-inner py-1">
+      <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Tablas</span>
+    </li>
+
+    <!-- Layouts -->
+    <li class="menu-item open" routerLinkActive="active">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-layout"></i>
+        <div data-i18n="Layouts">Consultas</div>
+      </a>
+
+      <ul class="menu-sub">
+        <li class="menu-item" routerLinkActive="active">
+          <a class="menu-link" [routerLink]="['/panel/vias']">
+            <div data-i18n="Without menu">Vías</div>
+          </a>
+        </li>
+        <li class="menu-item" routerLinkActive="active">
+          <a class="menu-link" [routerLink]="['/panel/habilitaciones-urbanas']">
+            <div data-i18n="Without navbar">Habiliraciones Urbanas</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Procesos</span>
+    </li>
+    <li class="menu-item">
+      <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-file"></i>
+        <div data-i18n="Account Settings">Emisiones</div>
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a href="pages-account-settings-account.html" class="menu-link">
+            <div data-i18n="Account">Certificado de Numeración</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="pages-account-settings-notifications.html" class="menu-link">
+            <div data-i18n="Notifications">Resolución de Numeración</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="pages-account-settings-connections.html" class="menu-link">
+            <div data-i18n="Connections">Padrón de Numeración</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <!-- Components -->
+    <li class="menu-header small text-uppercase"><span class="menu-header-text">Seguridad del Sistema</span></li>
+
+    <!-- User interface -->
+    <li class="menu-item">
+      <a href="javascript:void(0)" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-lock-alt"></i>
+        <div data-i18n="User interface">Datos del Usuario</div>
+      </a>
+      <ul class="menu-sub">
+        <li class="menu-item">
+          <a href="ui-accordion.html" class="menu-link">
+            <div data-i18n="Accordion">Perfíl de Usuario</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="ui-alerts.html" class="menu-link">
+            <div data-i18n="Alerts">Cambiar Contraseña</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+<!-- / Menu -->

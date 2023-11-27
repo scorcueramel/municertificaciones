@@ -1,0 +1,56 @@
+<div class="card mb-3 border-0">
+  <h4 class="fw-bold px-4 pt-4 mb-4"><span class="text-muted fw-light">Maestra de</span> Habilitaciones Urbanas</h4>
+</div>
+<div class="row mb-4">
+  <div class="col-md">
+    <!-- Form controls -->
+    <div class="col-md-12">
+      <div class="card border-0">
+        <!-- <h5 class="card-header">Consultar Maestra de Vías</h5> -->
+        <div class="card-body">
+          <form class="card__form" (ngSubmit)="consutlarHabilitacion();">
+            <div class="card__fieldset">
+              <h2 class="card__fieldset__title">Habilitación Urbana</h2>
+              <div class="row p-2 d-flex justify-content-between">
+                <div class="col-md-2">
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control shadow-none" id="cod_hab_urb" placeholder="Código"
+                      name="CHRCURCODIGO" [(ngModel)]="ItipoHU.CHRCURCODIGO" #codigoHBInput (keyup)="validaLargo($any($event));">
+                    <label for="cod_hab_urb" #codigoHBLabel class="form__label__hu">Código</label>
+                    <small *ngIf="valLargoCodigo" class="card__codigo__validacion">Máximo 3 caracteres</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control shadow-none" id="desc_hab_urb" placeholder="Nombre"
+                    name="VCHCURDESCRIPCION1" [(ngModel)]="ItipoHU.VCHCURDESCRIPCION1" maxlength="60" oninput="this.value = this.value.toUpperCase()">
+                    <label for="desc_hab_urb" class="form__label__descripcion__hu">Nombre</label>
+                  </div>
+                </div>
+                <div class="col-md-6 px-3 card__button__clear__content d-flex justify-content-end">
+                  <button type="button" class="btn btn-light my-3 card__button__clear" (click)="limpiarBusqueda();" placement="end" ngbTooltip="Limpiar el filtro">
+                    <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
+                  </button>
+
+                  <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search" #formButtonSearch
+                    (click)="consutlarHabilitacion();">
+                    <i class='bx bx-search-alt'></i>&nbsp; Búscar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <app-tables-hu [tituloTabla]="tituloTabla" [cabecerasYfooterTabla]="cabecerasYfooterTabla" [cuerpoTabla]="cuerpoTabla"
+    *ngIf="dataObtnida"></app-tables-hu>
+  <app-empty-data [icono]="icono" [texto]="texto" *ngIf="sinResultados"></app-empty-data>
+</div>
+
+<app-toast-errors [tituloToast]="tituloToast" [cuerpoToast]="cuerpoToast" *ngIf="errorCarga"></app-toast-errors>
