@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TiposHabilitaciones } from '@core/interfaces/tipos-habilitaciones';
-import { ConsultasService } from '@core/services/maestra-vias/consultas.service';
+import { ConsultasService } from '@core/services/tablas/consultas.service';
 import { SwalService } from '@core/services/resources/swal.service';
 
 @Component({

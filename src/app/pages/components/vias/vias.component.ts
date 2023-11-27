@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { TiposHabilitaciones } from '@core/interfaces/tipos-habilitaciones';
 import { TiposVias } from '@core/interfaces/tipos-vias';
-import { TiposHabilitacionesUrbanasService } from '@core/services/maestra-vias/tipos-habilitaciones-urbanas.service';
-import { TiposViasService } from '@core/services/maestra-vias/tipos-vias.service';
+import { TiposHabilitacionesUrbanasService } from '@core/services/tablas/tipos-habilitaciones-urbanas.service';
+import { TiposViasService } from '@core/services/tablas/tipos-vias.service';
 import { SwalService } from '@core/services/resources/swal.service';
 
 @Component({
