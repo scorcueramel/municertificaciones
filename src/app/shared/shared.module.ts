@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from '@core/core.module';
 
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { TablesViaHuComponent } from './components/tables-via-hu/tables-via-hu.component';
 
 
 @NgModule({
@@ -15,21 +16,21 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     ToastSuccessComponent,
     ToastErrorsComponent,
     TablesHuComponent,
-    TablesHuComponent,
-    EmptyDataComponent
+    EmptyDataComponent,
+    TablesViaHuComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     CoreModule,
-
     NgbTooltipModule
   ],
   exports: [
     ToastSuccessComponent,
     ToastErrorsComponent,
     TablesHuComponent,
-    EmptyDataComponent
+    EmptyDataComponent,
+    TablesViaHuComponent
   ]
 })
 export class SharedModule { }

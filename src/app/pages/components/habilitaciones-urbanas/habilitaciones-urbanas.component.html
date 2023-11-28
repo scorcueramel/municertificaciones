@@ -1,5 +1,26 @@
-<div class="card mb-3 border-0">
-  <h4 class="fw-bold px-4 pt-4 mb-4"><span class="text-muted fw-light">Maestra de</span> Habilitaciones Urbanas</h4>
+<div class="row">
+  <div class="col-lg-12 mb-4 order-0">
+    <div class="card border-0">
+      <div class="d-flex align-items-end row">
+        <div class="col-sm-8">
+          <div class="card-body">
+            <h5 class="card-title text-primary"><span class="text-muted fw-light">Maestra de</span> Habilitaciones
+              Urbanas</h5>
+            <p class="mb-4">
+              <span class="fw-bold">Consultas Generales </span> de Habilitaciones urbanas
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 text-end text-sm-left">
+          <div class="card-body pb-0 px-0 px-md-4">
+            <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User"
+              data-app-dark-img="illustrations/man-with-laptop-dark.png"
+              data-app-light-img="illustrations/man-with-laptop-light.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="row mb-4">
   <div class="col-md">
@@ -14,8 +35,9 @@
               <div class="row p-2 d-flex justify-content-between">
                 <div class="col-md-2">
                   <div class="form-floating mb-3">
-                    <input type="number" class="form-control shadow-none" id="cod_hab_urb" placeholder="Código"
-                      name="CHRCURCODIGO" [(ngModel)]="ItipoHU.CHRCURCODIGO" #codigoHBInput (keyup)="validaLargo($any($event));">
+                    <input type="text" class="form-control shadow-none" id="cod_hab_urb" placeholder="Código"
+                      name="CHRCURCODIGO" [(ngModel)]="ItipoHU.CHRCURCODIGO" #codigoHBInput
+                      (keyup)="validaLargo($any($event));">
                     <label for="cod_hab_urb" #codigoHBLabel class="form__label__hu">Código</label>
                     <small *ngIf="valLargoCodigo" class="card__codigo__validacion">Máximo 3 caracteres</small>
                   </div>
@@ -23,12 +45,14 @@
                 <div class="col-md-4">
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control shadow-none" id="desc_hab_urb" placeholder="Nombre"
-                    name="VCHCURDESCRIPCION1" [(ngModel)]="ItipoHU.VCHCURDESCRIPCION1" maxlength="60" oninput="this.value = this.value.toUpperCase()">
+                      name="VCHCURDESCRIPCION1" [(ngModel)]="ItipoHU.VCHCURDESCRIPCION1" maxlength="60"
+                      oninput="this.value = this.value.toUpperCase()">
                     <label for="desc_hab_urb" class="form__label__descripcion__hu">Nombre</label>
                   </div>
                 </div>
                 <div class="col-md-6 px-3 card__button__clear__content d-flex justify-content-end">
-                  <button type="button" class="btn btn-light my-3 card__button__clear" (click)="limpiarBusqueda();" placement="end" ngbTooltip="Limpiar el filtro">
+                  <button type="button" class="btn btn-light my-3 card__button__clear" (click)="limpiarBusqueda();"
+                    placement="end" ngbTooltip="Limpiar el filtro">
                     <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
                   </button>
 
@@ -45,7 +69,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="row">
   <app-tables-hu [tituloTabla]="tituloTabla" [cabecerasYfooterTabla]="cabecerasYfooterTabla" [cuerpoTabla]="cuerpoTabla"

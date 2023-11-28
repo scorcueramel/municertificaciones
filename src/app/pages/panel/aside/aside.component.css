@@ -6,3 +6,13 @@ a{
   cursor: pointer;
   text-decoration: none;
 }
+.btn-logout{
+  border: 1px solid #696cff;
+  color: #696cff;
+}
+
+.btn-logout:hover{
+  background-color: #696cff !important;
+  color: #fff;
+  transition: .7s !important;
+}

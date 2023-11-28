@@ -2,11 +2,11 @@
 <div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
   <h5 class="card-header">
     <div class="row">
-      <div class="col-md-3 mt-3">
+      <div class="col-md-4 mt-3">
         {{ tituloTabla }}
       </div>
 
-      <div class="col-md-6 mt-3">
+      <div class="col-md-5 mt-3">
         <div class="input-group input-group-merge">
           <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
           <input type="text" class="form-control" placeholder="Búscar Sobre Tus Resultados." placement="top"
@@ -24,18 +24,20 @@
     </div>
   </h5>
   <div class="table-responsive text-nowrap">
-    <table class="table table-hover" id="table_hu" #tableHu>
+    <table class="table table-hover" id="table_via_hu" #tableViaHU>
       <thead>
         <tr>
           <th *ngFor="let cabecera of cabecerasYfooterTabla">{{ cabecera }}</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        <tr *ngFor="let cuerpo of cuerpoTabla | buscadorHu : searchText">
-          <td>{{ cuerpo.CHRCURCODIGO }}</td>
-          <td>{{ cuerpo.VCHTCUDESCRIPCION }}</td>
-          <td>{{ cuerpo.VCHCURDESCRIPCION1 }}</td>
-          <td>{{ cuerpo.CHRCURESTADO }}</td>
+        <tr *ngFor="let cuerpo of cuerpoTabla | buscadorVias : searchText">
+          <td>{{ cuerpo.CHRCURCODIGO }}</td><!--COD DE HAB-->
+          <td>{{ cuerpo.VCHTCUDESCRIPCION }}</td><!--TIPO DE HAB-->
+          <td>{{ cuerpo.VCHCURDESCRIPCION1 }}</td><!--NOMBRE DE HAB-->
+          <td>{{ cuerpo.VCHVIACODIGO }}</td><!--COD DE VIA-->
+          <td>{{ cuerpo.VCHTVIDESCRIPCION }}</td><!--TIPO DE VÍA-->
+          <td>{{ cuerpo.VCHVIADESCRIPCION }}</td><!--NOMBRE DE VÍA-->
         </tr>
       </tbody>
       <tfoot class="table-border-bottom-0">

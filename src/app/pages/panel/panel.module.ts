@@ -19,6 +19,6 @@ import { CoreModule } from '@core/core.module';
 @NgModule({
   declarations: [AsideComponent, NavbarComponent, ContentComponent, PanelComponent, ViasComponent, HabilitacionesUrbanasComponent],
   imports: [CommonModule, PanelRoutingModule, HttpClientModule, SharedModule, FormsModule, ReactiveFormsModule, CoreModule],
-  exports: [AsideComponent, NavbarComponent, ContentComponent, PanelComponent, ViasComponent],
+  exports: [AsideComponent, NavbarComponent, ContentComponent, PanelComponent, ViasComponent, HabilitacionesUrbanasComponent],
 })
 export class PanelModule {}

@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
@@ -10,13 +11,15 @@ import { TiposVias } from '@core/interfaces/tipos-vias';
 import { TiposHabilitacionesUrbanasService } from '@core/services/tablas/tipos-habilitaciones-urbanas.service';
 import { TiposViasService } from '@core/services/tablas/tipos-vias.service';
 import { SwalService } from '@core/services/resources/swal.service';
+import { ViasHaburb } from '@core/interfaces/vias-haburb';
+import { ConsultasService } from '@core/services/tablas/consultas.service';
 
 @Component({
   selector: 'app-vias',
   templateUrl: './vias.component.html',
   styleUrls: ['./vias.component.css'],
 })
-export class ViasComponent implements OnInit {
+export class ViasComponent implements OnInit, OnDestroy {
   @ViewChild('codigoHB') codigoHB!: ElementRef<HTMLElement>;
   @ViewChild('codigoHBLabel') codigoHBLabel!: ElementRef<HTMLElement>;
   @ViewChild('formButtonSearch') formButtonSearch!: ElementRef<HTMLElement>;
@@ -26,35 +29,101 @@ export class ViasComponent implements OnInit {
   constructor(
     private _tiposHabUrb: TiposHabilitacionesUrbanasService,
     private _tiposVias: TiposViasService,
+    private _consultas: ConsultasService,
     private _swal: SwalService,
     private elementRef: ElementRef,
     private render2: Renderer2
   ) {}
 
+  // Validador de carga del sevicio para los selects
   exitoCarga: boolean = false;
   errorCarga: boolean = false;
+  // Validador largo del codigo de habilitación urbana
   validadorHU: boolean = false;
+  // Validador largo del codigo de vía
   validadorVIA: boolean = false;
+  // Validador de datos obtenidos luego de la consulta con el fin de mostrar la tabla
+  dataObtenida: boolean = false;
+  // Validador de datos sin resultado
+  sinResultados: boolean = false;
 
-  tituloToast!:string;
-  cuerpoToast!:string;
+  // Contenido del toast en caso de error al conectar el sevicio
+  tituloToast!: string;
+  cuerpoToast!: string;
+  // Titulo del tabla resultante de la busqueda
+  tituloTabla!: string;
 
+  // Llenar los selects para selecionar tipo habilicaion y tipo vía
   listTiposHabUrb: TiposHabilitaciones[] = [];
   listTiposVias: TiposVias[] = [];
 
-  habUrbanas: TiposHabilitaciones = {
-    INTTCUCODIGO: '',
-    VCHTCUDESCRIPCION: '',
+  // Objeto para emitir busqueda
+  viaHabUrb: ViasHaburb = {
     CHRCURCODIGO: '',
-    VCHCURDESCRIPCION1: '',
-  };
-
-  vias: TiposVias = {
-    INTTVICODIGO: '',
+    INTTCUCODIGO: '',
+    VCHVIADESCRIPCION: '',
     VCHTVIDESCRIPCION: '',
     VCHVIACODIGO: '',
-    VCHVIADESCRIPCION: '',
+    VCHCURDESCRIPCION1: '',
+    VCHTCUDESCRIPCION: '',
+    INTTVICODIGO: '',
   };
+  // Lista para almacenar datos obtenidos luego de la busqueda
+  listaViasHus: ViasHaburb[] = [];
+
+  //valores para llena la tabla pluego de la consulta
+  cabecerasYfooterTabla: any[] = [];
+  cuerpoTabla: any[] = [];
+
+  // Valores para resultados sin datos
+  icono!: string;
+  texto!: string;
+
+  consultarViasHabilitaciones(): void {
+    let arregloResultado: any[];
+    this._swal.wait();
+    this._consultas.getViaHUByParam(this.viaHabUrb).subscribe({
+      next: (resp: any) => {
+        this.tituloTabla = 'HABILITACIONES URBANAS Y VÍAS';
+        this.cabecerasYfooterTabla = [
+          'COD. HAB.',
+          'TIPO DE HABILITACIÓN',
+          'NOMBRE DE HABILITACIÓN',
+          'COD. VÍA',
+          'TIPO DE VÍA',
+          'NOMBRE VÍA',
+        ];
+
+        arregloResultado = resp.contenido;
+
+        if (arregloResultado.length > 0) {
+          this.cuerpoTabla = arregloResultado.sort((a, b) => {
+            if (a.CHRCURCODIGO > b.CHRCURCODIGO) {
+              return 1;
+            }
+            if (a.CHRCURCODIGO < b.CHRCURCODIGO) {
+              return -1;
+            }
+            return 0;
+          });
+          this.dataObtenida = true;
+          this.sinResultados = false;
+        } else {
+          this.sinResultados = true;
+          this.dataObtenida = false;
+          this.cuerpoTabla = [];
+          this.icono = './assets/img/icons/sorprendido.png';
+          this.texto = 'SIN RESULTADOS PARA TU BÚSQUEDA';
+        }
+
+        this._swal.close();
+      },
+      error: (err: any) => {
+        console.log(err);
+        this._swal.close();
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.getTypesHabUrb();
@@ -68,7 +137,7 @@ export class ViasComponent implements OnInit {
       },
       error: (err: any) => {
         this.errorCarga = true;
-        this.tituloToast = "Oooooppppss!!";
+        this.tituloToast = 'Oooooppppss!!';
         this.cuerpoToast = `Error al cargar el servicio : ${err.message}`;
         console.log(err);
       },
@@ -82,7 +151,7 @@ export class ViasComponent implements OnInit {
       },
       error: (err: any) => {
         this.errorCarga = true;
-        this.tituloToast = "Oooooppppss!!";
+        this.tituloToast = 'Oooooppppss!!';
         this.cuerpoToast = `Error al cargar el servicio : ${err.message}`;
         console.log(err);
       },
@@ -157,18 +226,27 @@ export class ViasComponent implements OnInit {
 
     this.validadorHU = false;
     this.validadorVIA = false;
+    this.tituloTabla = '';
+    this.cuerpoTabla = [];
+    this.cabecerasYfooterTabla = [];
 
-    this.habUrbanas = {
-      INTTCUCODIGO: '',
-      VCHTCUDESCRIPCION: '',
+    this.dataObtenida = false;
+    this.sinResultados = false;
+
+    this.viaHabUrb = {
       CHRCURCODIGO: '',
-      VCHCURDESCRIPCION1: '',
-    };
-    this.vias = {
-      INTTVICODIGO: '',
+      INTTCUCODIGO: '',
+      VCHVIADESCRIPCION: '',
       VCHTVIDESCRIPCION: '',
       VCHVIACODIGO: '',
-      VCHVIADESCRIPCION: '',
+      VCHCURDESCRIPCION1: '',
+      VCHTCUDESCRIPCION: '',
+      INTTVICODIGO: '',
     };
+  }
+
+  ngOnDestroy(): void {
+    // Todo lo que se encuentra dentro se ejecuta una vez se destruye el componente.
+    this.cuerpoTabla = [];
   }
 }

@@ -15,16 +15,14 @@ export class BuscadorHuPipe implements PipeTransform {
   private searchItems(items: any[], searchText: any): any[] {
     let results: any[] = [];
 
-    items.forEach(function(i){
-
-      if(i.VCHTCUDESCRIPCION != undefined){
-        if(
-          i.VCHCURDESCRIPCION1.includes(searchText) ||
-          i.VCHTCUDESCRIPCION.includes(searchText)
-          ){
-            results.push(i);
-          }
-        }
+    items.forEach(function (i) {
+      if (
+        i.CHRCURCODIGO.includes(searchText) ||
+        i.VCHCURDESCRIPCION1.includes(searchText) ||
+        i.VCHTCUDESCRIPCION.includes(searchText)
+      ) {
+        results.push(i);
+      }
     });
     return results;
   }

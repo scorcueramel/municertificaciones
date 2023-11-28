@@ -8,6 +8,7 @@ import {
 import { TiposHabilitaciones } from '@core/interfaces/tipos-habilitaciones';
 import { ConsultasService } from '@core/services/tablas/consultas.service';
 import { SwalService } from '@core/services/resources/swal.service';
+import { ViasHaburb } from '@core/interfaces/vias-haburb';
 
 @Component({
   selector: 'app-habilitaciones-urbanas',
@@ -30,10 +31,10 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
   dataObtnida: boolean = false;
   sinResultados: boolean = false;
 
-  ItipoHU: TiposHabilitaciones = {
+  ItipoHU: ViasHaburb = {
     CHRCURCODIGO: '',
     VCHCURDESCRIPCION1: '',
-    INTTCUCODIGO: '0',
+    INTTCUCODIGO: '',
   };
 
   tituloToast!: string;
@@ -57,7 +58,7 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
         arregloOrdenado = resp.contenido;
 
         if (arregloOrdenado.length > 0) {
-          this.cuerpoTabla = arregloOrdenado.sort(function (a, b) {
+          this.cuerpoTabla = arregloOrdenado.sort((a, b) =>{
             if (a.CHRCURCODIGO > b.CHRCURCODIGO) {
               return 1;
             }

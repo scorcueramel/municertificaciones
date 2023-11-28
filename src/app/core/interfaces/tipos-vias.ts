@@ -6,5 +6,4 @@ export interface TiposVias {
   // CONSULTA BASADA EN PARAMETROS
   VCHVIACODIGO? : string;
   VCHVIADESCRIPCION? : string;
-
 }

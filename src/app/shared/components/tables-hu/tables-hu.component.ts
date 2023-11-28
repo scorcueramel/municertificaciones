@@ -16,7 +16,6 @@ export class TablesHuComponent {
   constructor(private elementRef: ElementRef) {}
 
   searchText = '';
-  sinDatos: boolean = false;
 
   limpiarFiltro(): void {
     this.searchText = '';
@@ -33,6 +32,6 @@ export class TablesHuComponent {
     worksheet['!cols'] = [{ wch: 9 }, { wch: 30 }, { wch: 60 }, { wch: 9 }];
 
     XLSX.utils.book_append_sheet(book, worksheet, 'Exportacion HU');
-    XLSX.writeFile(book, fileName, { });
+    XLSX.writeFile(book, fileName, { compression:true });
   }
 }
