@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-lg-12 mb-4 order-0">
+    <div class="card border-0">
+      <div class="d-flex align-items-end row">
+        <div class="col-sm-8">
+          <div class="card-body">
+            <h5 class="card-title text-primary"><span class="text-muted fw-light">Certificados de</span> Numeración</h5>
+            <p class="mb-4">
+              <span class="fw-bold">Generación y Consultas </span> de Certificados de Numeración
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 text-end text-sm-left">
+          <div class="card-body pb-0 px-0 px-md-4">
+            <img src="../assets/img/illustrations/emision-certidicados-numeracion.svg" height="140"
+              alt="View Badge User" data-app-dark-img="illustrations/emision-certidicados-numeracion.svg"
+              data-app-light-img="illustrations/emision-certidicados-numeracion.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md">
+    <!-- Form controls -->
+    <div class="col-md-12">
+      <div class="card border-0">
+        <div class="card-body">
+          <form class="card__form" (ngSubmit)="consultarCertificado();">
+            <div class="card__fieldset">
+              <h2 class="card__fieldset__title">Datos del Certidicado</h2>
+              <div class="row px-2">
+                <div class="col-md-2">
+                  <div class="form-floating mt-3">
+                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Año" maxlength="4" name="CHRCERANIO" [(ngModel)]="certificadoNum.CHRCERANIO">
+                    <label for="anio" class="form__label__cert__anio">Año</label>
+                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroAnio">Ingrese solo números</small>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-floating mt-3">
+                    <input type="text" class="form-control shadow-none" id="num_cert" placeholder="N° Certificado" maxlength="6" name="VCHCERNUMERO" [(ngModel)]="certificadoNum.VCHCERNUMERO">
+                    <label for="num_exp" class="form__label__exp__num" [class.col-md]="{'diasplay':'block'}">N° Cert.</label>
+                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroCert">Ingrese solo números</small>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-floating mt-3">
+                    <input type="text" class="form-control shadow-none" id="num_exp" placeholder="N° Expediente" maxlength="25" name="VCHDOCCODIGO" [(ngModel)]="certificadoNum.VCHDOCCODIGO">
+                    <label for="num_exp" class="form__label__exp__num">N° Exp.</label>
+                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroExp">Ingrese solo números</small>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-floating mt-3">
+                    <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Código de Lote" maxlength="25" name="VCHLOTCODIGO" [(ngModel)]="certificadoNum.VCHLOTCODIGO">
+                    <label for="cod_lote" class="form__label__cod__lote">Cód. Lote</label>
+                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroCodLote">Ingrese solo números</small>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mt-3">
+                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Nombre de Habilitación" maxlength="60" name="VCHCURDESCRIPCION" [(ngModel)]="certificadoNum.VCHCURDESCRIPCION">
+                    <label for="anio" class="form__label__cert__anio">Nombre de Hab.</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card__fieldset my-3">
+              <h2 class="card__fieldset__title">Datos del Solicitante</h2>
+              <div class="row px-2">
+                <div class="col-md-6">
+                  <div class="form-floating mt-3">
+                    <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Nombre del Solicitante" maxlength="60" name="VCHCERSOLICITANTE" [(ngModel)]="certificadoNum.VCHCERSOLICITANTE">
+                    <label for="cod_lote" class="form__label__cod__lote">Nombre del Solicitante</label>
+                  </div>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                  <div class="col-md-12 px-3 card__button__clear__content d-flex justify-content-between">
+                    <button type="button" class="btn btn-light my-3 card__button__clear" placement="end"
+                      ngbTooltip="Limpiar el filtro" (click)="limpiarBusqueda();">
+                      <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
+                    </button>
+
+                    <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search" placement="end">
+                      <i class='bx bx-search-alt'></i>&nbsp; Búscar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

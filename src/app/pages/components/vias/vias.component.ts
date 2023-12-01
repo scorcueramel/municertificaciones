@@ -20,19 +20,15 @@ import { ConsultasService } from '@core/services/tablas/consultas.service';
   styleUrls: ['./vias.component.css'],
 })
 export class ViasComponent implements OnInit, OnDestroy {
-  @ViewChild('codigoHB') codigoHB!: ElementRef<HTMLElement>;
-  @ViewChild('codigoHBLabel') codigoHBLabel!: ElementRef<HTMLElement>;
-  @ViewChild('formButtonSearch') formButtonSearch!: ElementRef<HTMLElement>;
-  @ViewChild('codigoVia') codigoVia!: ElementRef<HTMLElement>;
-  @ViewChild('codigoViaLabel') codigoViaLabel!: ElementRef<HTMLElement>;
+  @ViewChild('codigoHUInput') codigoHUInput!: ElementRef<HTMLElement>;
 
   constructor(
     private _tiposHabUrb: TiposHabilitacionesUrbanasService,
     private _tiposVias: TiposViasService,
     private _consultas: ConsultasService,
     private _swal: SwalService,
-    private elementRef: ElementRef,
-    private render2: Renderer2
+    private render2: Renderer2,
+    private elementRef: ElementRef
   ) {}
 
   // Validador de carga del sevicio para los selects
@@ -80,7 +76,7 @@ export class ViasComponent implements OnInit, OnDestroy {
   texto!: string;
 
   consultarViasHabilitaciones(): void {
-    let arregloResultado: any[];
+    let arregloResultado: any[] = [];
     this._swal.wait();
     this._consultas.getViaHUByParam(this.viaHabUrb).subscribe({
       next: (resp: any) => {
@@ -96,27 +92,26 @@ export class ViasComponent implements OnInit, OnDestroy {
 
         arregloResultado = resp.contenido;
 
-        if (arregloResultado.length > 0) {
-          this.cuerpoTabla = arregloResultado.sort((a, b) => {
-            if (a.CHRCURCODIGO > b.CHRCURCODIGO) {
-              return 1;
-            }
-            if (a.CHRCURCODIGO < b.CHRCURCODIGO) {
-              return -1;
-            }
-            return 0;
-          });
-          this.dataObtenida = true;
-          this.sinResultados = false;
-        } else {
-          this.sinResultados = true;
-          this.dataObtenida = false;
-          this.cuerpoTabla = [];
-          this.icono = './assets/img/icons/sorprendido.png';
-          this.texto = 'SIN RESULTADOS PARA TU BÚSQUEDA';
-        }
-
-        this._swal.close();
+          if (arregloResultado.length > 0) {
+            this.cuerpoTabla = arregloResultado.sort((a, b) => {
+              if (a.CHRCURCODIGO > b.CHRCURCODIGO) {
+                return 1;
+              }
+              if (a.CHRCURCODIGO < b.CHRCURCODIGO) {
+                return -1;
+              }
+              return 0;
+            });
+            this.dataObtenida = true;
+            this.sinResultados = false;
+          } else {
+            this.sinResultados = true;
+            this.dataObtenida = false;
+            this.cuerpoTabla = [];
+            this.icono = './assets/img/icons/sorprendido.png';
+            this.texto = 'SIN RESULTADOS PARA TU BÚSQUEDA';
+          }
+          this._swal.close();
       },
       error: (err: any) => {
         console.log(err);
@@ -158,72 +153,7 @@ export class ViasComponent implements OnInit, OnDestroy {
     });
   }
 
-  validarLargoHU(event: any): void {
-    let largoCodigoHU = event.target.value.length;
-
-    const valLengthCodHB =
-      this.elementRef.nativeElement.querySelector('#cod_hab_urb');
-    const codHBLabel =
-      this.elementRef.nativeElement.querySelector('.form__label__hu');
-    const formButtonSearch = this.elementRef.nativeElement.querySelector(
-      '.card__button__search'
-    );
-
-    if (largoCodigoHU > 3) {
-      this.validadorHU = true;
-      this.render2.setStyle(valLengthCodHB, 'border', '1px solid red');
-      this.render2.addClass(codHBLabel, 'text-danger');
-      this.render2.setAttribute(formButtonSearch, 'disabled', 'disabled');
-    } else {
-      this.validadorHU = false;
-      this.render2.removeStyle(valLengthCodHB, 'border');
-      this.render2.removeClass(codHBLabel, 'text-danger');
-      this.render2.removeAttribute(formButtonSearch, 'disabled');
-    }
-  }
-
-  validarLargoVIA(event: any): void {
-    let largoCodigoVia = event.target.value.length;
-
-    const valLengthCodVia =
-      this.elementRef.nativeElement.querySelector('#cod_via');
-    const codViaLabel =
-      this.elementRef.nativeElement.querySelector('.form__label__via');
-    const formButtonSearch = this.elementRef.nativeElement.querySelector(
-      '.card__button__search'
-    );
-
-    if (largoCodigoVia > 4) {
-      this.validadorVIA = true;
-      this.render2.setStyle(valLengthCodVia, 'border', '1px solid red');
-      this.render2.addClass(codViaLabel, 'text-danger');
-      this.render2.setAttribute(formButtonSearch, 'disabled', 'disabled');
-    } else {
-      this.validadorVIA = false;
-      this.render2.removeStyle(valLengthCodVia, 'border');
-      this.render2.removeClass(codViaLabel, 'text-danger');
-      this.render2.removeAttribute(formButtonSearch, 'disabled');
-    }
-  }
-
   limpiarBusqueda(): void {
-    const valLengthCodHB =
-      this.elementRef.nativeElement.querySelector('#cod_hab_urb');
-    const codHBLabel =
-      this.elementRef.nativeElement.querySelector('.form__label__hu');
-    const valLengthCodVia =
-      this.elementRef.nativeElement.querySelector('#cod_via');
-    const codViaLabel =
-      this.elementRef.nativeElement.querySelector('.form__label__via');
-    const formButtonSearch = this.elementRef.nativeElement.querySelector(
-      '.card__button__search'
-    );
-    this.render2.removeStyle(valLengthCodHB, 'border');
-    this.render2.removeClass(codHBLabel, 'text-danger');
-    this.render2.removeStyle(valLengthCodVia, 'border');
-    this.render2.removeClass(codViaLabel, 'text-danger');
-    this.render2.removeAttribute(formButtonSearch, 'disabled');
-
     this.validadorHU = false;
     this.validadorVIA = false;
     this.tituloTabla = '';
@@ -233,16 +163,7 @@ export class ViasComponent implements OnInit, OnDestroy {
     this.dataObtenida = false;
     this.sinResultados = false;
 
-    this.viaHabUrb = {
-      CHRCURCODIGO: '',
-      INTTCUCODIGO: '',
-      VCHVIADESCRIPCION: '',
-      VCHTVIDESCRIPCION: '',
-      VCHVIACODIGO: '',
-      VCHCURDESCRIPCION1: '',
-      VCHTCUDESCRIPCION: '',
-      INTTVICODIGO: '',
-    };
+    this.viaHabUrb = {};
   }
 
   ngOnDestroy(): void {

@@ -9,6 +9,8 @@ import { CoreModule } from '@core/core.module';
 
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { TablesViaHuComponent } from './components/tables-via-hu/tables-via-hu.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { TablesPadronNumComponent } from './components/tables-padron-num/tables-padron-num.component';
 
 
 @NgModule({
@@ -17,20 +19,23 @@ import { TablesViaHuComponent } from './components/tables-via-hu/tables-via-hu.c
     ToastErrorsComponent,
     TablesHuComponent,
     EmptyDataComponent,
-    TablesViaHuComponent
+    TablesViaHuComponent,
+    ModalComponent,
+    TablesPadronNumComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     CoreModule,
-    NgbTooltipModule
+    NgbTooltipModule,
   ],
   exports: [
     ToastSuccessComponent,
     ToastErrorsComponent,
     TablesHuComponent,
     EmptyDataComponent,
-    TablesViaHuComponent
+    TablesViaHuComponent,
+    ModalComponent
   ]
 })
 export class SharedModule { }

@@ -11,6 +11,8 @@ import { PanelModule } from './pages/panel/panel.module';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderInterceptorService } from '@core/interceptors/header-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
   ],
   providers: [
-    CargarScriptsService
+    CargarScriptsService,
+    {provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptorService, multi: true},
   ],
   bootstrap: [AppComponent]
 })

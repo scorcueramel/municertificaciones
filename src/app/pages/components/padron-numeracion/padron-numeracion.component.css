@@ -23,7 +23,7 @@
 }
 
 .card__title__via {
-  width: 30px;
+  width: 15%;
 }
 
 .card__button__clear{
@@ -36,15 +36,3 @@
   background-color: transparent;
   border: 0;
 }
-
-.card__button__clear__content{
-  max-height: 75px;
-  display: block;
-  display: flex;
-  justify-content: space-between;
-}
-
-.card__codigo__validacion{
-  color: red;
-}
-

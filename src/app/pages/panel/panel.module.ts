@@ -15,10 +15,12 @@ import { SharedModule } from '@shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HabilitacionesUrbanasComponent } from '@pages/components/habilitaciones-urbanas/habilitaciones-urbanas.component';
 import { CoreModule } from '@core/core.module';
+import { CertificadosNumeracionComponent } from '@pages/components/certificados-numeracion/certificados-numeracion.component';
+
 
 @NgModule({
-  declarations: [AsideComponent, NavbarComponent, ContentComponent, PanelComponent, ViasComponent, HabilitacionesUrbanasComponent],
+  declarations: [AsideComponent, NavbarComponent, ContentComponent, PanelComponent, ViasComponent, HabilitacionesUrbanasComponent, CertificadosNumeracionComponent],
   imports: [CommonModule, PanelRoutingModule, HttpClientModule, SharedModule, FormsModule, ReactiveFormsModule, CoreModule],
-  exports: [AsideComponent, NavbarComponent, ContentComponent, PanelComponent, ViasComponent, HabilitacionesUrbanasComponent],
+  exports: [AsideComponent, NavbarComponent, ContentComponent, PanelComponent, ViasComponent, HabilitacionesUrbanasComponent, CertificadosNumeracionComponent],
 })
 export class PanelModule {}

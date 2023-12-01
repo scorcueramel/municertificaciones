@@ -3,7 +3,7 @@
       <div class="misc-wrapper">
         <h2 class="mb-2 mx-2">Página no encontrada :(</h2>
         <p class="mb-4 mx-2">Oops! 😖 La URL Buscada no existe en esta aplicación.</p>
-        <a [routerLink]="['/panel']" class="btn btn-primary">Back to home</a>
+        <a (click)="volver();" class="btn btn-primary text-light">Back to home</a>
         <div class="mt-3">
           <img
             src="../../../assets/img/illustrations/page-misc-error-light.png"

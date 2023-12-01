@@ -13,9 +13,9 @@
         </div>
         <div class="col-sm-4 text-end text-sm-left">
           <div class="card-body pb-0 px-0 px-md-4">
-            <img src="../assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User"
-              data-app-dark-img="illustrations/man-with-laptop-dark.png"
-              data-app-light-img="illustrations/man-with-laptop-light.png" />
+            <img src="../assets/img/illustrations/habilitaciones-urbanas.svg" height="140" alt="View Badge User"
+              data-app-dark-img="illustrations/habilitaciones-urbanas.svg"
+              data-app-light-img="illustrations/habilitaciones-urbanas.svg" />
           </div>
         </div>
       </div>
@@ -27,7 +27,6 @@
     <!-- Form controls -->
     <div class="col-md-12">
       <div class="card border-0">
-        <!-- <h5 class="card-header">Consultar Maestra de Vías</h5> -->
         <div class="card-body">
           <form class="card__form" (ngSubmit)="consutlarHabilitacion();">
             <div class="card__fieldset">
@@ -36,22 +35,20 @@
                 <div class="col-md-2">
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control shadow-none" id="cod_hab_urb" placeholder="Código"
-                      name="CHRCURCODIGO" [(ngModel)]="ItipoHU.CHRCURCODIGO" #codigoHBInput
-                      (keyup)="validaLargo($any($event));">
-                    <label for="cod_hab_urb" #codigoHBLabel class="form__label__hu">Código</label>
-                    <small *ngIf="valLargoCodigo" class="card__codigo__validacion">Máximo 3 caracteres</small>
+                      name="CHRCURCODIGO" [(ngModel)]="ItipoHU.CHRCURCODIGO" maxlength="3">
+                    <label for="cod_hab_urb" class="form__label__hu">Código</label>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control shadow-none" id="desc_hab_urb" placeholder="Nombre"
+                    <input type="text" class="form-control shadow-none" id="desc_hab_urb" placeholder="Nombre de Habilitación"
                       name="VCHCURDESCRIPCION1" [(ngModel)]="ItipoHU.VCHCURDESCRIPCION1" maxlength="60"
                       oninput="this.value = this.value.toUpperCase()">
-                    <label for="desc_hab_urb" class="form__label__descripcion__hu">Nombre</label>
+                    <label for="desc_hab_urb" class="form__label__descripcion__hu">Nombre de Habilitación</label>
                   </div>
                 </div>
-                <div class="col-md-6 px-3 card__button__clear__content d-flex justify-content-end">
-                  <button type="button" class="btn btn-light my-3 card__button__clear" (click)="limpiarBusqueda();"
+                <div class="col-md-4 px-3 card__button__clear__content d-flex">
+                  <button type="button" class="btn btn-light card__button__clear" (click)="limpiarBusqueda();"
                     placement="end" ngbTooltip="Limpiar el filtro">
                     <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
                   </button>

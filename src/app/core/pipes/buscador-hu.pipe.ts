@@ -24,6 +24,7 @@ export class BuscadorHuPipe implements PipeTransform {
         results.push(i);
       }
     });
+
     return results;
   }
 }

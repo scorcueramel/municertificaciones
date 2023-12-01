@@ -16,18 +16,14 @@ import { ViasHaburb } from '@core/interfaces/vias-haburb';
   styleUrls: ['./habilitaciones-urbanas.component.css'],
 })
 export class HabilitacionesUrbanasComponent implements OnDestroy {
-  @ViewChild('codigoHBInput') codigoHBInput!: ElementRef;
-  @ViewChild('codigoHBLabel') codigoHBLabel!: ElementRef;
-  @ViewChild('formButtonSearch') formButtonSearch!: ElementRef;
 
   constructor(
     private _consultas: ConsultasService,
     private _swal: SwalService,
-    private render2: Renderer2
   ) {}
 
   errorCarga: boolean = false;
-  valLargoCodigo: boolean = false;
+
   dataObtnida: boolean = false;
   sinResultados: boolean = false;
 
@@ -83,28 +79,13 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
         this.errorCarga = true;
         this.tituloToast = 'Oooooppppss!!';
         this.cuerpoToast = `Error al cargar el servicio : ${err.message}`;
-        console.log(err);
         this._swal.close();
       },
     });
   }
 
   limpiarBusqueda(): void {
-    const label = this.codigoHBLabel.nativeElement;
-    const input = this.codigoHBInput.nativeElement;
-    const boton = this.formButtonSearch.nativeElement;
-
-    this.valLargoCodigo = false;
-    this.render2.removeStyle(label, 'color');
-    this.render2.removeStyle(input, 'border');
-    this.render2.removeStyle(input, 'outline');
-    this.render2.removeAttribute(boton, 'disabled');
-
-    this.ItipoHU = {
-      INTTCUCODIGO: '',
-      CHRCURCODIGO: '',
-      VCHCURDESCRIPCION1: '',
-    };
+    this.ItipoHU = { };
 
     this.tituloTabla = '';
     this.cuerpoTabla = [];
@@ -112,28 +93,6 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
 
     this.dataObtnida = false;
     this.sinResultados = false;
-  }
-
-  validaLargo(event: Event): void {
-    let largo = (event.target as HTMLInputElement).value;
-
-    const label = this.codigoHBLabel.nativeElement;
-    const input = this.codigoHBInput.nativeElement;
-    const boton = this.formButtonSearch.nativeElement;
-
-    if (largo.length > 3) {
-      this.valLargoCodigo = true;
-      this.render2.setStyle(label, 'color', 'red');
-      this.render2.setStyle(input, 'border', '1px solid red');
-      this.render2.setStyle(input, 'outline', '0px');
-      this.render2.setAttribute(boton, 'disabled', 'disabled');
-    } else {
-      this.valLargoCodigo = false;
-      this.render2.removeStyle(label, 'color');
-      this.render2.removeStyle(input, 'border');
-      this.render2.removeStyle(input, 'outline');
-      this.render2.removeAttribute(boton, 'disabled');
-    }
   }
 
   ngOnDestroy(): void {
