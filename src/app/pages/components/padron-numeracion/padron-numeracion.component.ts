@@ -1,20 +1,19 @@
 import { Component, TemplateRef } from '@angular/core';
 import { TiposHabilitaciones } from '@core/interfaces/tipos-habilitaciones';
 import { TiposVias } from '@core/interfaces/tipos-vias';
-import { SwalService } from '@core/services/resources/swal.service';
+import { ViasHaburb } from '@core/interfaces/vias-haburb';
 import { TiposHabilitacionesUrbanasService } from '@core/services/tablas/tipos-habilitaciones-urbanas.service';
 import { TiposViasService } from '@core/services/tablas/tipos-vias.service';
 
 @Component({
   selector: 'app-padron-numeracion',
   templateUrl: './padron-numeracion.component.html',
-  styleUrls: ['./padron-numeracion.component.css']
+  styleUrls: ['./padron-numeracion.component.css'],
 })
 export class PadronNumeracionComponent {
   constructor(
     private _tiposHabUrb: TiposHabilitacionesUrbanasService,
     private _tiposVias: TiposViasService,
-    private _swal: SwalService,
   ) {}
 
   // Validador de carga del sevicio para los selects
@@ -35,6 +34,24 @@ export class PadronNumeracionComponent {
   listTiposHabUrb: TiposHabilitaciones[] = [];
   listTiposVias: TiposVias[] = [];
 
+  // Objeto para emitir busqueda
+  viaHabUrb: ViasHaburb = {
+    CHRCURCODIGO: '',
+    INTTCUCODIGO: '',
+    VCHVIADESCRIPCION: '',
+    VCHTVIDESCRIPCION: '',
+    VCHVIACODIGO: '',
+    VCHCURDESCRIPCION1: '',
+    VCHTCUDESCRIPCION: '',
+    INTTVICODIGO: '',
+  };
+
+  // Objeto para obtenre búsqueda de padró
+
+
+  // Objeto para emitir la búsqueda del padron
+
+
   //valores para llena la tabla pluego de la consulta
   cabecerasYfooterTabla: any[] = [];
   cuerpoTabla: any[] = [];
@@ -47,6 +64,7 @@ export class PadronNumeracionComponent {
     this.getTypesHabUrb();
     this.getTypesVias();
   }
+
 
   getTypesHabUrb(): void {
     this._tiposHabUrb.getAllTypeHabilitacionesUrbanas().subscribe({

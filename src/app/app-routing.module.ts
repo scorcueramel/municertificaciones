@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EMPTY_STRING, EXTERNAL_PATHS, INTERNAL_PATHS } from '@core/constants/router';
 import { AuthModule } from '@pages/auth/auth.module';
-import { LoginComponent } from '@pages/auth/login/login.component';
-import { NotFoundComponent } from '@pages/not-found/not-found.component';
+import { NotFoundComponent } from '@shared/components/not-found/not-found.component';
 
 import { PanelModule } from '@pages/panel/panel.module';
 
@@ -32,11 +31,13 @@ const routes: Routes = [
       { path: EMPTY_STRING, redirectTo: EXTERNAL_PATHS.APP_AUTH, pathMatch: 'full' },
     ],
   },
-  { path: '**', redirectTo: EXTERNAL_PATHS.APP_NOT_FOUND, pathMatch: 'full' },
+  { path: '**', redirectTo: EXTERNAL_PATHS.APP_NOT_FOUND, pathMatch: 'full', data: {title:'NO ENCONTRADO'} },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    useHash: true
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

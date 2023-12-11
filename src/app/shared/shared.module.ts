@@ -9,8 +9,7 @@ import { CoreModule } from '@core/core.module';
 
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { TablesViaHuComponent } from './components/tables-via-hu/tables-via-hu.component';
-import { ModalComponent } from './components/modal/modal.component';
-import { TablesPadronNumComponent } from './components/tables-padron-num/tables-padron-num.component';
+import { TablesCertificadosComponent } from './components/tables-certificados/tables-certificados.component';
 
 
 @NgModule({
@@ -20,8 +19,7 @@ import { TablesPadronNumComponent } from './components/tables-padron-num/tables-
     TablesHuComponent,
     EmptyDataComponent,
     TablesViaHuComponent,
-    ModalComponent,
-    TablesPadronNumComponent
+    TablesCertificadosComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +33,7 @@ import { TablesPadronNumComponent } from './components/tables-padron-num/tables-
     TablesHuComponent,
     EmptyDataComponent,
     TablesViaHuComponent,
-    ModalComponent
+    TablesCertificadosComponent,
   ]
 })
 export class SharedModule { }

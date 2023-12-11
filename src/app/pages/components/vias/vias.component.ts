@@ -90,7 +90,8 @@ export class ViasComponent implements OnInit, OnDestroy {
           'NOMBRE VÍA',
         ];
 
-        arregloResultado = resp.contenido;
+        if (resp.codigo == '0') {
+          arregloResultado = resp.contenido;
 
           if (arregloResultado.length > 0) {
             this.cuerpoTabla = arregloResultado.sort((a, b) => {
@@ -111,7 +112,12 @@ export class ViasComponent implements OnInit, OnDestroy {
             this.icono = './assets/img/icons/sorprendido.png';
             this.texto = 'SIN RESULTADOS PARA TU BÚSQUEDA';
           }
-          this._swal.close();
+        } else {
+          this.errorCarga = true;
+          this.tituloToast = 'Oooooppppss!!';
+          this.cuerpoToast = `Error al cargar el servicio : ${resp.mensaje}`;
+        }
+        this._swal.close();
       },
       error: (err: any) => {
         console.log(err);
@@ -163,7 +169,16 @@ export class ViasComponent implements OnInit, OnDestroy {
     this.dataObtenida = false;
     this.sinResultados = false;
 
-    this.viaHabUrb = {};
+    this.viaHabUrb = {
+      CHRCURCODIGO: '',
+      INTTCUCODIGO: '',
+      VCHVIADESCRIPCION: '',
+      VCHTVIDESCRIPCION: '',
+      VCHVIACODIGO: '',
+      VCHCURDESCRIPCION1: '',
+      VCHTCUDESCRIPCION: '',
+      INTTVICODIGO: '',
+    };
   }
 
   ngOnDestroy(): void {

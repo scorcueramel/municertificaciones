@@ -1,11 +1,7 @@
 import {
   Component,
-  ElementRef,
   OnDestroy,
-  Renderer2,
-  ViewChild,
 } from '@angular/core';
-import { TiposHabilitaciones } from '@core/interfaces/tipos-habilitaciones';
 import { ConsultasService } from '@core/services/tablas/consultas.service';
 import { SwalService } from '@core/services/resources/swal.service';
 import { ViasHaburb } from '@core/interfaces/vias-haburb';
@@ -16,10 +12,9 @@ import { ViasHaburb } from '@core/interfaces/vias-haburb';
   styleUrls: ['./habilitaciones-urbanas.component.css'],
 })
 export class HabilitacionesUrbanasComponent implements OnDestroy {
-
   constructor(
     private _consultas: ConsultasService,
-    private _swal: SwalService,
+    private _swal: SwalService
   ) {}
 
   errorCarga: boolean = false;
@@ -51,28 +46,34 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
         this.tituloTabla = 'HABILITACIONES URBANAS';
         this.cabecerasYfooterTabla = ['CÓDIGO', 'TIPO', 'NOMBRE', 'ESTADO'];
 
-        arregloOrdenado = resp.contenido;
+        if (resp.codigo == '0') {
+          arregloOrdenado = resp.contenido;
 
-        if (arregloOrdenado.length > 0) {
-          this.cuerpoTabla = arregloOrdenado.sort((a, b) =>{
-            if (a.CHRCURCODIGO > b.CHRCURCODIGO) {
-              return 1;
-            }
-            if (a.CHRCURCODIGO < b.CHRCURCODIGO) {
-              return -1;
-            }
-            return 0;
-          });
-          this.dataObtnida = true;
-          this.sinResultados = false;
-        } else {
-          this.sinResultados = true;
-          this.dataObtnida = false;
-          this.cuerpoTabla = [];
-          this.icono = './assets/img/icons/sorprendido.png';
-          this.texto = 'SIN RESULTADOS PARA TU BÚSQUEDA';
+          if (arregloOrdenado.length > 0) {
+            this.cuerpoTabla = arregloOrdenado.sort((a, b) => {
+              if (a.CHRCURCODIGO > b.CHRCURCODIGO) {
+                return 1;
+              }
+              if (a.CHRCURCODIGO < b.CHRCURCODIGO) {
+                return -1;
+              }
+              return 0;
+            });
+            this.dataObtnida = true;
+            this.sinResultados = false;
+          } else {
+            this.sinResultados = true;
+            this.dataObtnida = false;
+            this.cuerpoTabla = [];
+            this.icono = './assets/img/icons/sorprendido.png';
+            this.texto = 'SIN RESULTADOS PARA TU BÚSQUEDA';
+          }
         }
-
+        else {
+          this.errorCarga = true;
+          this.tituloToast = 'Oooooppppss!!';
+          this.cuerpoToast = `Error al cargar el servicio : ${resp.mensaje}`;
+        }
         this._swal.close();
       },
       error: (err: any) => {
@@ -85,7 +86,7 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
   }
 
   limpiarBusqueda(): void {
-    this.ItipoHU = { };
+    this.ItipoHU = {};
 
     this.tituloTabla = '';
     this.cuerpoTabla = [];
@@ -96,7 +97,6 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Todo lo que se encuentra dentro se ejecuta una vez se destruye el componente.
     this.cuerpoTabla = [];
   }
 }

@@ -1,0 +1,60 @@
+.card__button__export {
+  background-color: #71dd37;
+  border: #71dd37;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 8px;
+}
+.card__button__export:hover {
+  background-color: #4bb412;
+  border: #4bb412;
+}
+
+.buscador {
+  max-height: 45px;
+}
+
+.card-header {
+  background-color: transparent;
+}
+
+.btn-primary {
+  background-color: #005ea5;
+  border: #005ea5;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 8px;
+}
+.btn-primary:hover {
+  background-color: #004275;
+  border: #004275;
+}
+
+.contenedor__pdf {
+  width: 1108px;
+  height: 930px;
+}
+
+@media (max-width: 1200px) {
+  .contenedor__pdf {
+    width: 768px;
+    height: 750px;
+  }
+}
+
+@media (max-width: 995px) {
+  .contenedor__pdf {
+    width: 470px;
+    height: 750px;
+  }
+}
+
+@media (max-width: 770px) {
+  .contenedor__pdf {
+    width: 443px;
+    height: 750px;
+  }
+}
+
+@media (max-width: 570px) {
+  .contenedor__pdf {
+    width: 500px;
+    height: 750px;
+  }
+}

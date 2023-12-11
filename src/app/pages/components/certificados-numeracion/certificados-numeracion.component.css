@@ -6,7 +6,7 @@
 .card__fieldset {
   width: 100%;
   min-width: auto;
-  border: 2px solid #696cff;
+  border: 2px solid #005ea5;
   padding-bottom: 15px;
 }
 
@@ -18,7 +18,7 @@
   background-color: #fff;
   transition: 0.5s ease-in;
   text-align: center;
-  color: #696cff;
+  color: #005ea5;
 }
 
 .card__button__clear {
@@ -27,7 +27,7 @@
 }
 
 .card__button__clear:hover {
-  color: #696cff;
+  color: #005ea5;
   background-color: transparent;
   border: 0;
 }

@@ -7,12 +7,12 @@ a{
   text-decoration: none;
 }
 .btn-logout{
-  border: 1px solid #696cff;
-  color: #696cff;
+  border: 1px solid #005ea5;
+  color: #005ea5;
 }
 
 .btn-logout:hover{
-  background-color: #696cff !important;
+  background-color: #005ea5 !important;
   color: #fff;
   transition: .7s !important;
 }

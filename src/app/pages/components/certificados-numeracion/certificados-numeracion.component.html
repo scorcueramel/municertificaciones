@@ -34,35 +34,37 @@
               <div class="row px-2">
                 <div class="col-md-2">
                   <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Año" maxlength="4" name="CHRCERANIO" [(ngModel)]="certificadoNum.CHRCERANIO">
+                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Año" maxlength="4"
+                      name="CHRCERANIO" [(ngModel)]="certificadoNum.CHRCERANIO">
                     <label for="anio" class="form__label__cert__anio">Año</label>
-                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroAnio">Ingrese solo números</small>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="num_cert" placeholder="N° Certificado" maxlength="6" name="VCHCERNUMERO" [(ngModel)]="certificadoNum.VCHCERNUMERO">
-                    <label for="num_exp" class="form__label__exp__num" [class.col-md]="{'diasplay':'block'}">N° Cert.</label>
-                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroCert">Ingrese solo números</small>
+                    <input type="text" class="form-control shadow-none" id="num_cert" placeholder="N° Certificado"
+                      maxlength="6" name="VCHCERNUMERO" [(ngModel)]="certificadoNum.VCHCERNUMERO">
+                    <label for="num_exp" class="form__label__exp__num">N°
+                      Cert.</label>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="num_exp" placeholder="N° Expediente" maxlength="25" name="VCHDOCCODIGO" [(ngModel)]="certificadoNum.VCHDOCCODIGO">
+                    <input type="text" class="form-control shadow-none" id="num_exp" placeholder="N° Expediente"
+                      maxlength="25" name="VCHDOCCODIGO" [(ngModel)]="certificadoNum.VCHDOCCODIGO">
                     <label for="num_exp" class="form__label__exp__num">N° Exp.</label>
-                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroExp">Ingrese solo números</small>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Código de Lote" maxlength="25" name="VCHLOTCODIGO" [(ngModel)]="certificadoNum.VCHLOTCODIGO">
-                    <label for="cod_lote" class="form__label__cod__lote">Cód. Lote</label>
-                    <small class="form__label__cert__error_msg" *ngIf="valSoloNumeroCodLote">Ingrese solo números</small>
+                    <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Lt. Catastral"
+                      maxlength="25" name="VCHLOTCODIGO" [(ngModel)]="certificadoNum.VCHLOTCODIGO">
+                    <label for="cod_lote" class="form__label__cod__lote">Lt. Catastral</label>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Nombre de Habilitación" maxlength="60" name="VCHCURDESCRIPCION" [(ngModel)]="certificadoNum.VCHCURDESCRIPCION">
+                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Nombre de Habilitación"
+                      maxlength="60" name="VCHCURDESCRIPCION" [(ngModel)]="certificadoNum.VCHCURDESCRIPCION" oninput="this.value = this.value.toUpperCase()">
                     <label for="anio" class="form__label__cert__anio">Nombre de Hab.</label>
                   </div>
                 </div>
@@ -74,18 +76,20 @@
               <div class="row px-2">
                 <div class="col-md-6">
                   <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Nombre del Solicitante" maxlength="60" name="VCHCERSOLICITANTE" [(ngModel)]="certificadoNum.VCHCERSOLICITANTE">
+                    <input type="text" class="form-control shadow-none" id="cod_lote"
+                      placeholder="Nombre del Solicitante" maxlength="60" name="VCHCERSOLICITANTE"
+                      [(ngModel)]="certificadoNum.VCHCERSOLICITANTE" oninput="this.value = this.value.toUpperCase()">
                     <label for="cod_lote" class="form__label__cod__lote">Nombre del Solicitante</label>
                   </div>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
                   <div class="col-md-12 px-3 card__button__clear__content d-flex justify-content-between">
-                    <button type="button" class="btn btn-light my-3 card__button__clear" placement="end"
-                      ngbTooltip="Limpiar el filtro" (click)="limpiarBusqueda();">
+                    <button type="button" class="btn btn-light my-3 card__button__clear" ngbTooltip="Limpiar el filtro"
+                      (click)="limpiarBusqueda();" #btnClean disabled>
                       <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
                     </button>
 
-                    <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search" placement="end">
+                    <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search" #btnSearch >
                       <i class='bx bx-search-alt'></i>&nbsp; Búscar
                     </button>
                   </div>
@@ -97,4 +101,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <app-tables-certificados [tituloTabla]="tituloTabla" [cabecerasYfooterTabla]="cabecerasYfooterTabla" [cuerpoTabla]="cuerpoTabla"
+    *ngIf="dataObtnida"></app-tables-certificados>
+  <app-empty-data [icono]="icono" [texto]="texto" *ngIf="sinResultados"></app-empty-data>
 </div>

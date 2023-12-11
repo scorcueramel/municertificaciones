@@ -11,7 +11,7 @@ export class SwalService {
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',
-      iconColor: '#696cff',
+      iconColor: '#005ea5',
       text: 'Espere un momento por favor...',
     });
     Swal.showLoading();
@@ -59,7 +59,7 @@ export class SwalService {
       title: titulo,
       html: mensaje,
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
+      confirmButtonColor: '#005ea5',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si',
       cancelButtonText: 'No',

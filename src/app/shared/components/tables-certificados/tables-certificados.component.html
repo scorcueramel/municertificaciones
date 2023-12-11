@@ -1,8 +1,7 @@
-<!-- Bootstrap Table with Header - Footer -->
 <div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
   <h5 class="card-header">
     <div class="row">
-      <div class="col-md-3 mt-3">
+      <div class="col-md-6 mt-3">
         {{ tituloTabla }}
       </div>
 
@@ -16,19 +15,15 @@
             placement="right" ngbTooltip="Limpiar filtro"><i class='bx bxs-eraser'></i></button>
         </div>
       </div>
-      <div class="col-md-3 d-flex justify-content-end">
-        <!-- <button type="button" class="btn btn-success my-3 mx-3 card__button__export" #formButtonExport (click)="exportarExcel();">
+      <!-- <div class="col-md-3 d-flex justify-content-end">
+        <button type="button" class="btn btn-success my-3 mx-3 card__button__export" #formButtonExport (click)="exportarExcel();">
           <img src="./assets/img/icons/export_excel.svg" width="19px">&nbsp; Exportar
-        </button> -->
-
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Listar Lotes
         </button>
-      </div>
+      </div> -->
     </div>
   </h5>
   <div class="table-responsive text-nowrap">
-    <table class="table table-hover" id="table_hu" #tableHu>
+    <table class="table table-hover" id="table_certificados" #tableHu>
       <thead>
         <tr>
           <th *ngFor="let cabecera of cabecerasYfooterTabla">{{ cabecera }}</th>
@@ -36,10 +31,20 @@
       </thead>
       <tbody class="table-border-bottom-0">
         <tr *ngFor="let cuerpo of cuerpoTabla | buscadorHu : searchText">
-          <td>{{ cuerpo.CHRCURCODIGO }}</td>
-          <td>{{ cuerpo.VCHTCUDESCRIPCION }}</td>
-          <td>{{ cuerpo.VCHCURDESCRIPCION1 }}</td>
-          <td>{{ cuerpo.CHRCURESTADO }}</td>
+          <td>
+            <button (click)="imprimir(cuerpo.INTCERCODIGO, content)" class="btn btn-sm btn-primary">
+              <i class='bx bxs-printer text-light'></i>
+            </button>
+          </td>
+          <td>{{ cuerpo.CHRCERANIO }}</td>
+          <td>{{ cuerpo.TXTNUMCER }}</td>
+          <td>{{ cuerpo.VCHNUMEXP }}</td>
+          <td>{{ cuerpo.VCHTIPOHU }}</td>
+          <td>{{ cuerpo.VCHNOMBREHU }}</td>
+          <td>{{ cuerpo.VCHLOTDESMZHU }}</td>
+          <td>{{ cuerpo.VCHLOTDESLTHU }}</td>
+          <td>{{ cuerpo.VCHCERSOLICITANTE }}</td>
+          <td>{{ cuerpo.VCHCODLOTECAT }}</td>
         </tr>
       </tbody>
       <tfoot class="table-border-bottom-0">
@@ -50,4 +55,18 @@
     </table>
   </div>
 </div>
-<!-- Bootstrap Table with Header - Footer -->
+
+<ng-template #content let-modal class="">
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="col-12">
+        <object type="application/pdf" [data]="rutaPDF | safeUrls" class="contenedor__pdf">
+          ERROR (no puede mostrarse el DOCUMENTO)
+        </object>
+      </div>
+    </div>
+  </div>
+</ng-template>

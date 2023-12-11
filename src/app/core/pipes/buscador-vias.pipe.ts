@@ -16,7 +16,6 @@ export class BuscadorViasPipe implements PipeTransform {
     let results: any[] = [];
 
     items.forEach(function (i) {
-      console.log(i.VCHCURDESCRIPCION1);
       // if(i.VCHCURDESCRIPCION1 != undefined){
         if (
           i.CHRCURCODIGO.includes(searchText) ||
