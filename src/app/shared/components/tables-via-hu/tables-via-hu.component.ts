@@ -11,6 +11,8 @@ export class TablesViaHuComponent {
   @Input() cabecerasYfooterTabla: any[]=[];
   @Input() cuerpoTabla: any[] = [];
 
+  @Input() identificador:boolean;
+
   @ViewChild('tableViaHU') tableViaHU!: ElementRef<HTMLElement>;
 
   constructor(

@@ -86,7 +86,11 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
   }
 
   limpiarBusqueda(): void {
-    this.ItipoHU = {};
+    this.ItipoHU = {
+      CHRCURCODIGO: '',
+      VCHCURDESCRIPCION: '',
+      INTTCUCODIGO: '',
+    };
 
     this.tituloTabla = '';
     this.cuerpoTabla = [];

@@ -18,7 +18,7 @@ export class ConsultasService {
   }
 
   getHUByParam(HU:TiposHabilitaciones):Observable<TiposHabilitaciones[]>{
-    let uri = `lhabilitaciones?chrcurcodigo=${HU.CHRCURCODIGO}&vchcurdescripcion=${HU.VCHCURDESCRIPCION1}&inttcucodigo=${HU.INTTCUCODIGO}&entidad=201&sistema=609&key=400`;
+    let uri = `lhabilitaciones?chrcurcodigo=${HU.CHRCURCODIGO}&vchcurdescripcion=${HU.VCHCURDESCRIPCION}&inttcucodigo=${HU.INTTCUCODIGO}&entidad=201&sistema=609&key=400`;
     return this.http.get<TiposHabilitaciones[]>(`${this.URL}${uri}`);
   }
 

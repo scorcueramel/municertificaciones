@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, TemplateRef } from '@angular/core';
 import { Certificado } from '@core/interfaces/certificado';
 import { TiposVias } from '@core/interfaces/tipos-vias';
 import { CertificadosNumeracionService } from '@core/services/procesos/certificados-numeracion.service';
@@ -14,7 +14,7 @@ import {
   templateUrl: './certificados-numeracion.component.html',
   styleUrls: ['./certificados-numeracion.component.css'],
 })
-export class CertificadosNumeracionComponent implements OnDestroy, OnInit {
+export class CertificadosNumeracionComponent implements OnDestroy {
   hoveredDate: NgbDate | any;
   fromDate: NgbDate | any;
   toDate: NgbDate | any;
@@ -25,8 +25,6 @@ export class CertificadosNumeracionComponent implements OnDestroy, OnInit {
     private modalService: NgbModal,
     public formatter: NgbDateParserFormatter
   ) {}
-
-  ngOnInit(): void {}
 
   // Valida respuesta del servicio
   errorCarga: boolean = false;

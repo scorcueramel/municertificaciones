@@ -21,7 +21,99 @@
     </div>
   </div>
 </div>
-<app-hu-vias></app-hu-vias>
+<div class="row mb-4">
+  <!-- Dismissible Alerts -->
+  <div class="col-md">
+    <!-- Form controls -->
+    <div class="col-md-12">
+      <div class="card mb-4 border-0">
+        <!-- <h5 class="card-header">Consultar Maestra de Vías</h5> -->
+        <div class="card-body">
+          <form class="card__form">
+            <div class="card__fieldset">
+              <h2 class="card__fieldset__title">Habilitación Urbana</h2>
+              <div class="row p-2">
+                <div class="col-md-2">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control shadow-none" id="cod_hab_urb" name="CHRCURCODIGO"
+                      [(ngModel)]="viaHabUrb.CHRCURCODIGO" placeholder="Código" maxlength="3">
+                    <label for="cod_hab_urb" class="form__label__hu">Código</label>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control shadow-none" id="nom_hab_urb" name="VCHCURDESCRIPCION"
+                      [(ngModel)]="viaHabUrb.VCHCURDESCRIPCION" placeholder="Nombre de Habilitación" maxlength="60" oninput="this.value = this.value.toUpperCase()">
+                    <label for="nom_hab_urb">Nombre de Habilitación</label>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-floating">
+                    <select class="form-select shadow-none" id="tipo_hab_urb" aria-label="(TODOS)" name="VCHTCUDESCRIPCION"
+                      [(ngModel)]="viaHabUrb.INTTCUCODIGO">
+                      <option selected value="">(TODOS)</option>
+                      <option *ngFor="let tipo of listTiposHabUrb" [value]="tipo.INTTCUCODIGO">{{
+                        tipo.VCHTCUDESCRIPCION }}</option>
+                    </select>
+                    <label for="tipo_hab_urb">Tipo</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card__fieldset mt-4">
+              <h2 class="card__fieldset__title card__title__via">Vía</h2>
+              <div class="row p-2">
+                <div class="col-md-2">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control shadow-none" id="cod_via" name="INTTVICODIGO"
+                      [(ngModel)]="viaHabUrb.VCHVIACODIGO" placeholder="Código" maxlength="4">
+                    <label for="cod_hvia" class="form__label__via">Código</label>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control shadow-none" id="nom_via" name="VCHVIADESCRIPCION"
+                      [(ngModel)]="viaHabUrb.VCHVIADESCRIPCION" aria-label="(TODOS)" placeholder="Nombre de Vía" maxlength="60" oninput="this.value = this.value.toUpperCase()">
+                    <label for="nom_via">Nombre de Vía</label>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-floating">
+                    <select class="form-select shadow-none" id="tipo_via" aria-label="" name="VCHTVIDESCRIPCION"
+                      [(ngModel)]="viaHabUrb.INTTVICODIGO">
+                      <option selected value="">(TODOS)</option>
+                      <option *ngFor="let tipo of listTiposVias" [value]="tipo.INTTVICODIGO">{{
+                        tipo.VCHTVIDESCRIPCION }}</option>
+                    </select>
+                    <label for="tipo_via">Tipo</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-2 d-flex justify-content-end">
+              <div class="col-md-auto px-2 card__button__clear__content">
+                <button type="button" class="btn btn-light my-3 card__button__clear" (click)="limpiarBusqueda();">
+                  <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
+                </button>
+              </div>
+              <div class="col-md-auto px-2 card__button__search__content">
+                <button type="submit" class="btn btn-primary my-3 card__button__search" #formButtonSearch (click)="consultarViasHabilitaciones();">
+                  <i class='bx bx-search-alt'></i>&nbsp; Búscar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/ Dismissible Alerts -->
+</div>
 
+<div class="row">
+  <app-tables-via-hu [identificador]="identificador" [tituloTabla]="tituloTabla" [cabecerasYfooterTabla]="cabecerasYfooterTabla" [cuerpoTabla]="cuerpoTabla"
+  *ngIf="dataObtenida"></app-tables-via-hu>
+  <app-empty-data  [icono]="icono" [texto]="texto" *ngIf="sinResultados"></app-empty-data>
+</div>
 
-
+<app-toast-errors [tituloToast]="tituloToast" [cuerpoToast]="cuerpoToast" *ngIf="errorCarga"></app-toast-errors>
