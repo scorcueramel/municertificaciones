@@ -55,8 +55,6 @@ export class TablesCertificadosComponent {
         //   'test',
         //   params
         // );
-
-
         this._swal.close();
       },
       error: (err) => {
@@ -71,14 +69,14 @@ export class TablesCertificadosComponent {
       '#table_certificados'
     );
     let date = new Date();
-    let fileName = `Exportacion HU - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.xlsx`;
+    let fileName = `Exportación CERTIFICACIONES - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.xlsx`;
 
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(tableHu);
     const book: XLSX.WorkBook = XLSX.utils.book_new();
 
     worksheet['!cols'] = [{ wch: 9 }, { wch: 30 }, { wch: 60 }, { wch: 9 }];
 
-    XLSX.utils.book_append_sheet(book, worksheet, 'Exportacion HU');
+    XLSX.utils.book_append_sheet(book, worksheet, 'Exportación de CERTIFICACIONES');
     XLSX.writeFile(book, fileName, { compression: true });
   }
 }

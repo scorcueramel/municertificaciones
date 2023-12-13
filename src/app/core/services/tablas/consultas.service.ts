@@ -23,7 +23,7 @@ export class ConsultasService {
   }
 
   getViaHUByParam(HUVIA:ViasHaburb):Observable<ViasHaburb[]>{
-    let uri = `lhabvia?chrcurcodigo=${HUVIA.CHRCURCODIGO}&vchcurdescripcion=${HUVIA.VCHCURDESCRIPCION1}&inttcucodigo=${HUVIA.INTTCUCODIGO}&vchviacodigo=${HUVIA.VCHVIACODIGO}&vchviadescripcion=${HUVIA.VCHVIADESCRIPCION}&inttvicodigo=${HUVIA.INTTVICODIGO}&entidad=201&sistema=609&key=400`;
+    let uri = `lhabvia?chrcurcodigo=${HUVIA.CHRCURCODIGO}&vchcurdescripcion=${HUVIA.VCHCURDESCRIPCION}&inttcucodigo=${HUVIA.INTTCUCODIGO}&vchviacodigo=${HUVIA.VCHVIACODIGO}&vchviadescripcion=${HUVIA.VCHVIADESCRIPCION}&inttvicodigo=${HUVIA.INTTVICODIGO}&entidad=201&sistema=609&key=400`;
     return this.http.get<ViasHaburb[]>(`${this.URL}${uri}`);
   }
 }

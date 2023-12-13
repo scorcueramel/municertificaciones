@@ -16,6 +16,9 @@ import { CoreModule } from '@core/core.module';
 import { CertificadosNumeracionComponent } from '@pages/components/certificados-numeracion/certificados-numeracion.component';
 import { LoginComponent } from '@pages/auth/login/login.component';
 import { PadronNumeracionComponent } from '@pages/components/padron-numeracion/padron-numeracion.component';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { PadronNumeracionComponent } from '@pages/components/padron-numeracion/p
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
+    NgbDatepickerModule,
+    NgbTooltipModule
   ],
   exports: [
     AsideComponent,

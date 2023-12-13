@@ -1,0 +1,42 @@
+.card__form {
+  min-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.card__fieldset {
+  width: 100%;
+  min-width: auto;
+  border: 2px solid #005ea5;
+  transition: 0.5s ease-in;
+}
+
+.card__fieldset__title {
+  width: 15%;
+  font-size: 14px;
+  margin-top: -9px;
+  margin-left: 15px;
+  background-color: #fff;
+  transition: 0.5s ease-in;
+  text-align: center;
+  color: #005ea5;
+}
+
+.card__title__via {
+  width: 15%;
+}
+
+.card__button__clear{
+  background-color: transparent;
+  border: 0;
+}
+
+.card__button__clear:hover{
+  color: #005ea5;
+  background-color: transparent;
+  border: 0;
+}
+
+.validacion{
+  color: red;
+}

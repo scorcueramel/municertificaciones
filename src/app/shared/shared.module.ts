@@ -10,7 +10,7 @@ import { CoreModule } from '@core/core.module';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { TablesViaHuComponent } from './components/tables-via-hu/tables-via-hu.component';
 import { TablesCertificadosComponent } from './components/tables-certificados/tables-certificados.component';
-
+import { HuViasComponent } from './components/hu-vias/hu-vias.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,7 @@ import { TablesCertificadosComponent } from './components/tables-certificados/ta
     EmptyDataComponent,
     TablesViaHuComponent,
     TablesCertificadosComponent,
+    HuViasComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +35,7 @@ import { TablesCertificadosComponent } from './components/tables-certificados/ta
     EmptyDataComponent,
     TablesViaHuComponent,
     TablesCertificadosComponent,
+    HuViasComponent
   ]
 })
 export class SharedModule { }

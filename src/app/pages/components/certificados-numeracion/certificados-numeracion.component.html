@@ -32,7 +32,7 @@
             <div class="card__fieldset">
               <h2 class="card__fieldset__title">Datos del Certidicado</h2>
               <div class="row px-2">
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                   <div class="form-floating mt-3">
                     <input type="text" class="form-control shadow-none" id="anio" placeholder="Año" maxlength="4"
                       name="CHRCERANIO" [(ngModel)]="certificadoNum.CHRCERANIO">
@@ -46,26 +46,75 @@
                     <label for="num_exp" class="form__label__exp__num">N°
                       Cert.</label>
                   </div>
+                </div> -->
+                <div class="col-md-3 mt-3">
+                  <div class="dp-hidden position-absolute">
+                    <div class="input-group">
+                      <input type="text" name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
+                        [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                        [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1" />
+                      <ng-template #t let-date let-focused="focused">
+                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                          [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                          (mouseleave)="hoveredDate = null">
+                          {{ date.day }}
+                        </span>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <input type="text" #DATFECHADESDE class="form-control cajas-fechas" placeholder="dd/mm/aaaa"
+                      name="DATFECHADESDE" [(ngModel)]="certificadoNum.DATFECHADESDE"
+                      disabled />
+                    <button class="btn btn-outline-primary bi bi-calendar3" (click)="datepicker.toggle()"
+                      type="button"></button>
+                  </div>
+                  <small class="mx-2" style="font-size: 13px; color: #005ea5;">Fecha Inicial</small>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3 mt-3">
+                  <div class="input-group">
+                    <input #DATFECHAHASTA class="form-control cajas-fechas" placeholder="dd/mm/aaaa"
+                      name="DATFECHAHASTA" [(ngModel)]="certificadoNum.DATFECHAHASTA"
+                      disabled />
+                    <button class="btn btn-outline-primary bi bi-calendar3" (click)="datepicker.toggle()"
+                      type="button"></button>
+                  </div>
+                  <small class="mx-2" style="font-size: 13px; color: #005ea5;">Fecha Final</small>
+                </div>
+                <div class="col-md-3">
                   <div class="form-floating mt-3">
                     <input type="text" class="form-control shadow-none" id="num_exp" placeholder="N° Expediente"
                       maxlength="25" name="VCHDOCCODIGO" [(ngModel)]="certificadoNum.VCHDOCCODIGO">
                     <label for="num_exp" class="form__label__exp__num">N° Exp.</label>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <div class="form-floating mt-3">
                     <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Lt. Catastral"
                       maxlength="25" name="VCHLOTCODIGO" [(ngModel)]="certificadoNum.VCHLOTCODIGO">
                     <label for="cod_lote" class="form__label__cod__lote">Lt. Catastral</label>
                   </div>
                 </div>
-                <div class="col-md-4">
+              </div>
+            </div>
+
+            <div class="card__fieldset my-3">
+              <h2 class="card__fieldset__title">Habilitación y Vía</h2>
+              <div class="row px-2">
+                <div class="col-md-6">
                   <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Nombre de Habilitación"
-                      maxlength="60" name="VCHCURDESCRIPCION" [(ngModel)]="certificadoNum.VCHCURDESCRIPCION" oninput="this.value = this.value.toUpperCase()">
-                    <label for="anio" class="form__label__cert__anio">Nombre de Hab.</label>
+                    <input type="text" class="form-control shadow-none" id="habilitacion"
+                      placeholder="Nombre de Habilitación" maxlength="60" name="VCHCURDESCRIPCION"
+                      [(ngModel)]="certificadoNum.VCHCURDESCRIPCION" oninput="this.value = this.value.toUpperCase()">
+                    <label for="habilitacion" class="form__label__cert__via">Nombre de Habilitación</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating mt-3">
+                    <input type="text" class="form-control shadow-none" id="tipo_via"
+                      placeholder="Nombre de la Vía" maxlength="60" name="VCHTVIDESCRIPCION"
+                      [(ngModel)]="certificadoNum.VCHTVIDESCRIPCION" oninput="this.value = this.value.toUpperCase()">
+                    <label for="tipo_via" class="form__label__cert__via">Nombre de la Vía</label>
                   </div>
                 </div>
               </div>
@@ -82,17 +131,17 @@
                     <label for="cod_lote" class="form__label__cod__lote">Nombre del Solicitante</label>
                   </div>
                 </div>
-                <div class="col-md-6 d-flex justify-content-end">
-                  <div class="col-md-12 px-3 card__button__clear__content d-flex justify-content-between">
-                    <button type="button" class="btn btn-light my-3 card__button__clear" ngbTooltip="Limpiar el filtro"
-                      (click)="limpiarBusqueda();" #btnClean disabled>
-                      <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
-                    </button>
-
-                    <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search" #btnSearch >
-                      <i class='bx bx-search-alt'></i>&nbsp; Búscar
-                    </button>
-                  </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                  <button type="button" class="btn btn-light my-3 card__button__clear"
+                    (click)="limpiarBusqueda();">
+                    <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
+                  </button>
+                  <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search">
+                    <i class='bx bx-search-alt'></i>&nbsp; Búscar
+                  </button>
+                  <button type="button" class="btn btn-primary card__button__nuevo" (click)="openModalCreate(content1)">
+                    <i class='bx bxs-message-square-add'></i>&nbsp; Nuevo
+                  </button>
                 </div>
               </div>
             </div>
@@ -103,8 +152,252 @@
   </div>
 </div>
 
+<!-- Toast -->
+<app-toast-errors [tituloToast]="tituloToast" [cuerpoToast]="cuerpoToast" *ngIf="errorCarga"></app-toast-errors>
+
 <div class="row">
-  <app-tables-certificados [tituloTabla]="tituloTabla" [cabecerasYfooterTabla]="cabecerasYfooterTabla" [cuerpoTabla]="cuerpoTabla"
-    *ngIf="dataObtnida"></app-tables-certificados>
+  <app-tables-certificados [tituloTabla]="tituloTabla" [cabecerasYfooterTabla]="cabecerasYfooterTabla"
+    [cuerpoTabla]="cuerpoTabla" *ngIf="dataObtnida"></app-tables-certificados>
   <app-empty-data [icono]="icono" [texto]="texto" *ngIf="sinResultados"></app-empty-data>
 </div>
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">NUEVO CERTIFICADO </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6 py-3">
+        <div class="row p-3 fila">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="haburbana" placeholder="HABILITACIÓN URBANA"
+                name="HABURBANA" disabled>
+              <label for="haburbana">HABILITACIÓN URBANA</label>
+            </div>
+          </div>
+          <div class="col-md-1 d-flex align-items-center">
+            <div class="form-floating">
+              <button type="button" class="btn btn-primary" placement="top" ngbTooltip="Búscar Habilitación"
+                (click)="openModalSearch(content2)">
+                <i class='bx bxs-folder-open'></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-5 d-flex justify-content-end">
+            <div class="form-floating mx-2">
+              <input type="text" class="form-control shadow-none" id="anio" placeholder="AÑO" name="ANIO"
+                [(ngModel)]="ANIO" disabled>
+              <label for="anio">AÑO</label>
+            </div>
+            <div class="form-floating">
+              <input type="date" class="form-control shadow-none" id="fecha" placeholder="FECHA" name="FECHA"
+                [(ngModel)]="FECHA" (keyup)="actualizaFecha()" (change)="actualizaFecha()">
+              <label for="anio">FECHA</label>
+            </div>
+          </div>
+        </div>
+        <div class="row p-3 fila">
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" name="" id="" class="form-control shadow-none" id="mz" placeholder="MZ." disabled>
+              <label for="mz">MZ.</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" name="" id="" class="form-control shadow-none" id="lte" placeholder="LTE." disabled>
+              <label for="lte">LTE.</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" name="" id="" class="form-control shadow-none" id="sublte" placeholder="SUB LTE."
+                disabled>
+              <label for="sublte">SUB LTE.</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" name="" id="" class="form-control shadow-none" id="ltecatastral"
+                placeholder="LTE. CATASTRAL" disabled>
+              <label for="ltecatastral">LTE. CATASTRAL</label>
+            </div>
+          </div>
+        </div>
+        <div class="row p-3 fila">
+          <div class="col-md-3 table-responsive tab-nue-cert">
+            <table class="table table-sm table-bordered table-hover">
+              <thead>
+                <tr class="text-center">
+                  <th>NÚMEROS</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-3 table-responsive tab-nue-cert">
+            <table class="table table-sm table-bordered table-hover">
+              <thead>
+                <tr class="text-center">
+                  <th>TIPO</th>
+                  <th>NRO</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating">
+                  <select class="form-select shadow-none" id="nombre_via" aria-label="NOMBRE DE LA VÍA">
+                    <option selected value="">Seleccionar</option>
+                  </select>
+                  <label for="nombre_via">VÍA</label>
+                </div>
+              </div>
+            </div>
+            <div class="row pt-4">
+              <div class="col-md-12">
+                <div class="form-floating">
+                  <input type="text" class="form-control shadow-none" id="rango" placeholder="RANGO" name="RANGO"
+                    disabled>
+                  <label for="rango">RANGO</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 py-3">
+        <div class="row fila py-2">
+          <div class="col-md-12 table-responsive tab-principal">
+            <table class="table table-sm table-bordered table-hover">
+              <thead>
+                <tr class="text-center">
+                  <th colspan="2" class="px-5">PUERTA</th>
+                  <th colspan="2">BLOQUE/EDIFICO</th>
+                  <th colspan="2">ESTABLECIMIENTO</th>
+                  <th colspan="7"></th>
+                </tr>
+                <tr class="text-center">
+                  <th>OPC.</th>
+                  <th>TIPO</th>
+                  <th>N°</th>
+                  <th>TIPO</th>
+                  <th>N°</th>
+                  <th>TIPO</th>
+                  <th>N°</th>
+                  <th>COD. VÍA</th>
+                  <th>N° CDRA.</th>
+                  <th>LADO</th>
+                  <th>LG. LTE.</th>
+                  <th>LG. PTA.</th>
+                  <th>T.E.</th>
+                  <th>CERT.ANT.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr>
+                  <td>
+                    <button class="btn btn-sm btn-success mx-2" placement="bottom" ngbTooltip="Modificar" disabled><i
+                        class='bx bxs-message-square-edit'></i></button>
+                    <button class="btn btn-sm btn-danger" placement="bottom" ngbTooltip="Eliminar" disabled><i
+                        class='bx bxs-message-square-x'></i></button>
+                  </td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row fila py-2">
+          <div class="col-md-9 d-flex align-items-center">
+            <button class="btn btn-sm btn-primary" placement="bottom" ngbTooltip="Nuevo" disabled><i
+                class='bx bxs-message-square-add'></i></button>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="total" placeholder="HABILITACIÓN URBANA"
+                name="TOTAL" disabled>
+              <label for="total">TOTAL</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 py-2">
+        <div class="row fila py-3">
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="nrexpediente" placeholder="N° EXPEDIENTE"
+                name="NROEXPEDIENTE">
+              <label for="nrexpediente">N° EXPEDIENTE</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="propietario" placeholder="PROPIETARIO"
+                name="PROPIETARIO">
+              <label for="propietario">PROPIETARIO</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="solicitadopor" placeholder="SOLICITADO POR"
+                name="SOLICITADOPOR">
+              <label for="solicitadopor">SOLICITADO POR</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="conyuge" placeholder="CONYUGE" name="CONYUGE">
+              <label for="conyuge">CONYUGE</label>
+            </div>
+          </div>
+        </div>
+        <div class="row fila py-3">
+          <div class="col-md-12">
+            <div class="form-floating">
+              <textarea class="form-control shadow-none" placeholder="OBSERVACIONES" id="observacuibes"
+                style="height: 100px"></textarea>
+              <label for="observacuibes">OBSERVACIONES</label>
+            </div>
+          </div>
+        </div>
+        <div class="row fila py-3">
+          <div class="col-md-3">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="total" placeholder="IMPORTA DE PAGO"
+                name="IMPORTADEPAGO">
+              <label for="total">IMPORTA DE PAGO</label>
+            </div>
+          </div>
+          <div class="col-md-9 d-flex align-items-center justify-content-end">
+            <button class="btn btn-primary d-flex align-items-center" placement="bottom" ngbTooltip="Guardar"><i
+                class='bx bxs-save mx-1'></i> Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-secondary" (click)="modal.close('Cerrar click')">Cancelar</button>
+  </div>
+</ng-template>
+
+
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Padron de Númeracion</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <app-hu-vias></app-hu-vias>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-secondary" (click)="modal.close('Close click')">Cancelar</button>
+  </div>
+</ng-template>

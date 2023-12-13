@@ -2,10 +2,6 @@
   <h5 class="card-header">
     <div class="row">
       <div class="col-md-6 mt-3">
-        {{ tituloTabla }}
-      </div>
-
-      <div class="col-md-6 mt-3">
         <div class="input-group input-group-merge">
           <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
           <input type="text" class="form-control" placeholder="Búscar Sobre Tus Resultados." placement="top"
@@ -15,11 +11,12 @@
             placement="right" ngbTooltip="Limpiar filtro"><i class='bx bxs-eraser'></i></button>
         </div>
       </div>
-      <!-- <div class="col-md-3 d-flex justify-content-end">
-        <button type="button" class="btn btn-success my-3 mx-3 card__button__export" #formButtonExport (click)="exportarExcel();">
+      <div class="col-md-6 d-flex justify-content-end">
+        <button type="button" class="btn btn-success my-3 mx-3 card__button__export" #formButtonExport
+          (click)="exportarExcel();">
           <img src="./assets/img/icons/export_excel.svg" width="19px">&nbsp; Exportar
         </button>
-      </div> -->
+      </div>
     </div>
   </h5>
   <div class="table-responsive text-nowrap">
@@ -32,12 +29,25 @@
       <tbody class="table-border-bottom-0">
         <tr *ngFor="let cuerpo of cuerpoTabla | buscadorHu : searchText">
           <td>
-            <button (click)="imprimir(cuerpo.INTCERCODIGO, content)" class="btn btn-sm btn-primary">
+            <button (click)="imprimir(cuerpo.INTCERCODIGO, content)" class="btn btn-sm btn-primary" placement="top"
+              ngbTooltip="Imprimir">
               <i class='bx bxs-printer text-light'></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-success mx-2" placement="top" ngbTooltip="Modificar">
+              <i class='bx bxs-message-square-edit'></i>
+            </button>
+            <button type="button" class="btn btn-danger btn-sm" placement="top" ngbTooltip="Anular">
+              <i class='bx bxs-message-square-x'></i>
             </button>
           </td>
           <td>{{ cuerpo.CHRCERANIO }}</td>
           <td>{{ cuerpo.TXTNUMCER }}</td>
+          <td class="text-center">
+            <span class="badge text-bg-success" placement="top" ngbTooltip="ACTIVO">
+              <!-- <i class='bx bxs-x-square'></i> -->
+              <i class='bx bxs-check-square'></i>
+            </span>
+          </td>
           <td>{{ cuerpo.VCHNUMEXP }}</td>
           <td>{{ cuerpo.VCHTIPOHU }}</td>
           <td>{{ cuerpo.VCHNOMBREHU }}</td>

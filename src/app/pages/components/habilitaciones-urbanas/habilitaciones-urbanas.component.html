@@ -31,7 +31,7 @@
           <form class="card__form" (ngSubmit)="consutlarHabilitacion();">
             <div class="card__fieldset">
               <h2 class="card__fieldset__title">Habilitación Urbana</h2>
-              <div class="row p-2">
+              <div class="row p-2 d-flex align-items-center">
                 <div class="col-md-2">
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control shadow-none" id="cod_hab_urb" placeholder="Código"
@@ -42,18 +42,17 @@
                 <div class="col-md-6">
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control shadow-none" id="desc_hab_urb" placeholder="Nombre de Habilitación"
-                      name="VCHCURDESCRIPCION1" [(ngModel)]="ItipoHU.VCHCURDESCRIPCION1" maxlength="60"
+                      name="VCHCURDESCRIPCION1" [(ngModel)]="ItipoHU.VCHCURDESCRIPCION" maxlength="60"
                       oninput="this.value = this.value.toUpperCase()">
                     <label for="desc_hab_urb" class="form__label__descripcion__hu">Nombre de Habilitación</label>
                   </div>
                 </div>
                 <div class="col-md-4 card__button__clear__content">
-                  <button type="button" class="btn btn-light card__button__clear" (click)="limpiarBusqueda();"
-                    placement="end" ngbTooltip="Limpiar el filtro">
+                  <button type="button" class="btn btn-light card__button__clear" (click)="limpiarBusqueda();">
                     <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
                   </button>
 
-                  <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search"
+                  <button type="submit" class="btn btn-primary card__button__search"
                     (click)="consutlarHabilitacion();">
                     <i class='bx bx-search-alt'></i>&nbsp; Búscar
                   </button>

@@ -4,9 +4,11 @@ export interface CertificadoResp {
   VCHLOTDESLTHU?: string;
   VCHCODLOTECAT?: string;
   CHRCERANIO?: string;
+  VCHLOTDESSLTHU?: string;
   VCHCERNUMERO?: string;
   VCHLOTDESMZHU?: string;
   VCHCERSOLICITANTE?: string;
+  DATCERFECHA?: string;
   VCHNOMBREHU?: string;
   VCHCODHU?: string;
   VCHNUMEXP?: string;

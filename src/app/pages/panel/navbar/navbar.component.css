@@ -1,3 +1,7 @@
 .contenedor-usuario{
   margin-top: -60px;
 }
+
+nav{
+  z-index: 0;
+}

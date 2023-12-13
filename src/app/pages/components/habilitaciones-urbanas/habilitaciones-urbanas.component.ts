@@ -24,7 +24,7 @@ export class HabilitacionesUrbanasComponent implements OnDestroy {
 
   ItipoHU: ViasHaburb = {
     CHRCURCODIGO: '',
-    VCHCURDESCRIPCION1: '',
+    VCHCURDESCRIPCION: '',
     INTTCUCODIGO: '',
   };
 

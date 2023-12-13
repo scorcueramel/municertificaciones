@@ -4,7 +4,7 @@ export interface ViasHaburb {
   VCHVIADESCRIPCION?: string;
   VCHTVIDESCRIPCION?: string;
   VCHVIACODIGO?: string;
-  VCHCURDESCRIPCION1?: string;
+  VCHCURDESCRIPCION?: string;
   VCHTCUDESCRIPCION?: string;
   INTTVICODIGO?: string;
 }
