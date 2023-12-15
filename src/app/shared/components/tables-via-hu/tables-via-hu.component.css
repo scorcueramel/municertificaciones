@@ -1,27 +1,86 @@
-.card__button__export{
+.card__button__export {
   background-color: #71dd37;
   border: #71dd37;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 8px;
 }
-.card__button__export:hover{
+.card__button__export:hover {
   background-color: #4bb412;
   border: #4bb412;
 }
 
-.buscador{
+.buscador {
   max-height: 45px;
 }
 
-.card-header{
+.card-header {
   background-color: transparent;
 }
 
-.tabla{
-  max-height: 600px;
+.tabla {
+  max-height: 600px !important;
+  border: 2px solid #005ea5;
 }
 
 #table_via_hu thead {
   position: sticky;
   top: -5px;
   z-index: 1;
+}
+
+.alto {
+  height: 250px;
+  border: 2px solid #005ea5;
+}
+
+.alto::-webkit-scrollbar, .tabla::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+.alto::-webkit-scrollbar:horizontal, .tabla::-webkit-scrollbar:horizontal {
+  height: 8px; /* width of the entire scrollbar */
+}
+
+.alto::-webkit-scrollbar-track, .tabla::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+.alto::-webkit-scrollbar-thumb, .tabla::-webkit-scrollbar-thumb {
+  background-color: #005ea5; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  /* border: 3px solid #005ea5;  creates padding around scroll thumb */
+}
+
+.cabecera_listas {
+  position: sticky;
+  top: -5px;
+  z-index: 1;
+}
+
+.tabla-izquierda > thead > tr > th {
+  background-color: #e43f36;
+  color: #fff;
+  font-weight: bold;
+  position: sticky;
+  top: -5px;
+  z-index: 1;
+}
+
+.tabla-derecha > thead > tr > th {
+  background-color: #1958be;
+  color: #fff;
+  font-weight: bold;
+  position: sticky;
+  top: -5px;
+  z-index: 1;
+}
+
+.cabecera {
+  background-color: #005ea5;
+  position: sticky;
+  top: -5px;
+  z-index: 1;
+}
+
+.tabla_mz_lte > thead > tr > th{
+  background-color: #005ea5;
 }

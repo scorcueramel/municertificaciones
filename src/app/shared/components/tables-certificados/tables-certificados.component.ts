@@ -38,14 +38,13 @@ export class TablesCertificadosComponent {
   limpiarFiltro(): void {
     this.searchText = '';
   }
-
   imprimir(codigo: any, content: TemplateRef<any>): void {
     this._swal.wait();
     this._certificados.generateCodeForPrint(codigo).subscribe({
       next: (resp: any) => {
         // window.open(`http://172.16.2.28:8070/reportesSATTI/reporteSATTI.rep?intreporteid=${resp.codigo}`,'_blank');
-        this.rutaPDF = `http://172.16.2.28:8070/reportesSATTI/reporteSATTI.rep?intreporteid=${resp.codigo}`
-        this.modalService.open(content, {size: 'xl'});
+        this.rutaPDF = `http://172.16.2.28:8070/reportesSATTI/reporteSATTI.rep?intreporteid=${resp.codigo}`;
+        this.modalService.open(content, { size: 'xl' });
 
         // let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
         // width=0,height=0,left=-1000,top=-1000`;
@@ -76,7 +75,11 @@ export class TablesCertificadosComponent {
 
     worksheet['!cols'] = [{ wch: 9 }, { wch: 30 }, { wch: 60 }, { wch: 9 }];
 
-    XLSX.utils.book_append_sheet(book, worksheet, 'Exportación de CERTIFICACIONES');
+    XLSX.utils.book_append_sheet(
+      book,
+      worksheet,
+      'Exportación de CERTIFICACIONES'
+    );
     XLSX.writeFile(book, fileName, { compression: true });
   }
 }

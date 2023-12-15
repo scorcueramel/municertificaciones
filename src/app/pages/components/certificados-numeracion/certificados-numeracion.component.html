@@ -23,135 +23,114 @@
 </div>
 
 <div class="row mb-4">
-  <div class="col-md">
-    <!-- Form controls -->
-    <div class="col-md-12">
-      <div class="card border-0">
-        <div class="card-body">
-          <form class="card__form" (ngSubmit)="consultarCertificado();">
-            <div class="card__fieldset">
-              <h2 class="card__fieldset__title">Datos del Certidicado</h2>
-              <div class="row px-2">
-                <!-- <div class="col-md-2">
-                  <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="anio" placeholder="Año" maxlength="4"
-                      name="CHRCERANIO" [(ngModel)]="certificadoNum.CHRCERANIO">
-                    <label for="anio" class="form__label__cert__anio">Año</label>
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="num_cert" placeholder="N° Certificado"
-                      maxlength="6" name="VCHCERNUMERO" [(ngModel)]="certificadoNum.VCHCERNUMERO">
-                    <label for="num_exp" class="form__label__exp__num">N°
-                      Cert.</label>
-                  </div>
-                </div> -->
-                <div class="col-md-3 mt-3">
-                  <div class="dp-hidden position-absolute">
-                    <div class="input-group">
-                      <input type="text" name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
-                        [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
-                        [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1" />
-                      <ng-template #t let-date let-focused="focused">
-                        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
-                          [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
-                          (mouseleave)="hoveredDate = null">
-                          {{ date.day }}
-                        </span>
-                      </ng-template>
-                    </div>
-                  </div>
+  <!-- Form controls -->
+  <div class="col-md-12">
+    <div class="card border-0">
+      <div class="card-body">
+        <form class="card__form" (ngSubmit)="consultarCertificado();">
+          <div class="card__fieldset">
+            <h2 class="card__fieldset__title">Datos del Certidicado</h2>
+            <div class="row px-2">
+              <div class="col-md-3 mt-3">
+                <div class="dp-hidden position-absolute">
                   <div class="input-group">
-                    <input type="text" #DATFECHADESDE class="form-control cajas-fechas" placeholder="dd/mm/aaaa"
-                      name="DATFECHADESDE" [(ngModel)]="certificadoNum.DATFECHADESDE"
-                      disabled />
-                    <button class="btn btn-outline-primary bi bi-calendar3" (click)="datepicker.toggle()"
-                      type="button"></button>
-                  </div>
-                  <small class="mx-2" style="font-size: 13px; color: #005ea5;">Fecha Inicial</small>
-                </div>
-                <div class="col-md-3 mt-3">
-                  <div class="input-group">
-                    <input #DATFECHAHASTA class="form-control cajas-fechas" placeholder="dd/mm/aaaa"
-                      name="DATFECHAHASTA" [(ngModel)]="certificadoNum.DATFECHAHASTA"
-                      disabled />
-                    <button class="btn btn-outline-primary bi bi-calendar3" (click)="datepicker.toggle()"
-                      type="button"></button>
-                  </div>
-                  <small class="mx-2" style="font-size: 13px; color: #005ea5;">Fecha Final</small>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="num_exp" placeholder="N° Expediente"
-                      maxlength="25" name="VCHDOCCODIGO" [(ngModel)]="certificadoNum.VCHDOCCODIGO">
-                    <label for="num_exp" class="form__label__exp__num">N° Exp.</label>
+                    <input type="text" name="datepicker" class="form-control" ngbDatepicker #datepicker="ngbDatepicker"
+                      [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="2"
+                      [dayTemplate]="t" outsideDays="hidden" [startDate]="fromDate!" tabindex="-1" />
+                    <ng-template #t let-date let-focused="focused">
+                      <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+                        [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+                        (mouseleave)="hoveredDate = null">
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Lt. Catastral"
-                      maxlength="25" name="VCHLOTCODIGO" [(ngModel)]="certificadoNum.VCHLOTCODIGO">
-                    <label for="cod_lote" class="form__label__cod__lote">Lt. Catastral</label>
-                  </div>
+                <div class="input-group">
+                  <input type="text" #DATFECHADESDE class="form-control cajas-fechas" placeholder="dd/mm/aaaa"
+                    name="DATFECHADESDE" [(ngModel)]="certificadoNum.DATFECHADESDE" disabled />
+                  <button class="btn btn-outline-primary bi bi-calendar3" (click)="datepicker.toggle()"
+                    type="button"></button>
+                </div>
+                <small class="mx-2" style="font-size: 13px; color: #005ea5;">Fecha Inicial</small>
+              </div>
+              <div class="col-md-3 mt-3">
+                <div class="input-group">
+                  <input #DATFECHAHASTA class="form-control cajas-fechas" placeholder="dd/mm/aaaa" name="DATFECHAHASTA"
+                    [(ngModel)]="certificadoNum.DATFECHAHASTA" disabled />
+                  <button class="btn btn-outline-primary bi bi-calendar3" (click)="datepicker.toggle()"
+                    type="button"></button>
+                </div>
+                <small class="mx-2" style="font-size: 13px; color: #005ea5;">Fecha Final</small>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating mt-3">
+                  <input type="text" class="form-control shadow-none" id="num_exp" placeholder="N° Expediente"
+                    maxlength="25" name="VCHDOCCODIGO" [(ngModel)]="certificadoNum.VCHDOCCODIGO">
+                  <label for="num_exp" class="form__label__exp__num">N° Exp.</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating mt-3">
+                  <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Lt. Catastral"
+                    maxlength="25" name="VCHLOTCODIGO" [(ngModel)]="certificadoNum.VCHLOTCODIGO">
+                  <label for="cod_lote" class="form__label__cod__lote">Lt. Catastral</label>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="card__fieldset my-3">
-              <h2 class="card__fieldset__title">Habilitación y Vía</h2>
-              <div class="row px-2">
-                <div class="col-md-6">
-                  <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="habilitacion"
-                      placeholder="Nombre de Habilitación" maxlength="60" name="VCHCURDESCRIPCION"
-                      [(ngModel)]="certificadoNum.VCHCURDESCRIPCION" oninput="this.value = this.value.toUpperCase()">
-                    <label for="habilitacion" class="form__label__cert__via">Nombre de Habilitación</label>
-                  </div>
+          <div class="card__fieldset my-3">
+            <h2 class="card__fieldset__title">Habilitación y Vía</h2>
+            <div class="row px-2">
+              <div class="col-md-6">
+                <div class="form-floating mt-3">
+                  <input type="text" class="form-control shadow-none" id="habilitacion"
+                    placeholder="Nombre de Habilitación" maxlength="60" name="VCHCURDESCRIPCION"
+                    [(ngModel)]="certificadoNum.VCHCURDESCRIPCION" oninput="this.value = this.value.toUpperCase()">
+                  <label for="habilitacion" class="form__label__cert__via">Nombre de Habilitación</label>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="tipo_via"
-                      placeholder="Nombre de la Vía" maxlength="60" name="VCHTVIDESCRIPCION"
-                      [(ngModel)]="certificadoNum.VCHTVIDESCRIPCION" oninput="this.value = this.value.toUpperCase()">
-                    <label for="tipo_via" class="form__label__cert__via">Nombre de la Vía</label>
-                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating mt-3">
+                  <input type="text" class="form-control shadow-none" id="tipo_via" placeholder="Nombre de la Vía"
+                    maxlength="60" name="VCHTVIDESCRIPCION" [(ngModel)]="certificadoNum.VCHTVIDESCRIPCION"
+                    oninput="this.value = this.value.toUpperCase()">
+                  <label for="tipo_via" class="form__label__cert__via">Nombre de la Vía</label>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="card__fieldset my-3">
-              <h2 class="card__fieldset__title">Datos del Solicitante</h2>
-              <div class="row px-2">
-                <div class="col-md-6">
-                  <div class="form-floating mt-3">
-                    <input type="text" class="form-control shadow-none" id="cod_lote"
-                      placeholder="Nombre del Solicitante" maxlength="60" name="VCHCERSOLICITANTE"
-                      [(ngModel)]="certificadoNum.VCHCERSOLICITANTE" oninput="this.value = this.value.toUpperCase()">
-                    <label for="cod_lote" class="form__label__cod__lote">Nombre del Solicitante</label>
-                  </div>
-                </div>
-                <div class="col-md-6 d-flex justify-content-end align-items-center">
-                  <button type="button" class="btn btn-light my-3 card__button__clear"
-                    (click)="limpiarBusqueda();">
-                    <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
-                  </button>
-                  <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search">
-                    <i class='bx bx-search-alt'></i>&nbsp; Búscar
-                  </button>
-                  <button type="button" class="btn btn-primary card__button__nuevo" (click)="openModalCreate(content1)">
-                    <i class='bx bxs-message-square-add'></i>&nbsp; Nuevo
-                  </button>
+          <div class="card__fieldset my-3">
+            <h2 class="card__fieldset__title">Datos del Solicitante</h2>
+            <div class="row px-2">
+              <div class="col-md-6">
+                <div class="form-floating mt-3">
+                  <input type="text" class="form-control shadow-none" id="cod_lote" placeholder="Nombre del Solicitante"
+                    maxlength="60" name="VCHCERSOLICITANTE" [(ngModel)]="certificadoNum.VCHCERSOLICITANTE"
+                    oninput="this.value = this.value.toUpperCase()">
+                  <label for="cod_lote" class="form__label__cod__lote">Nombre del Solicitante</label>
                 </div>
               </div>
+              <div class="col-md-6 d-flex justify-content-end align-items-center">
+                <button type="button" class="btn btn-light my-3 card__button__clear" (click)="limpiarBusqueda();">
+                  <i class='bx bxs-eraser'></i>&nbsp; Limpiar Búsqueda
+                </button>
+                <button type="submit" class="btn btn-primary my-3 mx-3 card__button__search">
+                  <i class='bx bx-search-alt'></i>&nbsp; Búscar
+                </button>
+                <button type="button" class="btn btn-primary card__button__nuevo" (click)="openModalCreate(content1)">
+                  <i class='bx bxs-message-square-add'></i>&nbsp; Nuevo
+                </button>
+              </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
-
 <!-- Toast -->
 <app-toast-errors [tituloToast]="tituloToast" [cuerpoToast]="cuerpoToast" *ngIf="errorCarga"></app-toast-errors>
 
@@ -331,53 +310,57 @@
       <div class="col-md-12 py-2">
         <div class="row fila py-3">
           <div class="col-md-3">
-            <div class="form-floating">
-              <input type="text" class="form-control shadow-none" id="nrexpediente" placeholder="N° EXPEDIENTE"
-                name="NROEXPEDIENTE">
-              <label for="nrexpediente">N° EXPEDIENTE</label>
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control shadow-none" id="nrexpediente" placeholder="N° EXPEDIENTE"
+                    name="NROEXPEDIENTE">
+                  <label for="nrexpediente">N° EXPEDIENTE</label>
+                </div>
+              </div>
+              <div class="col-md-12 mb-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control shadow-none" id="propietario" placeholder="PROPIETARIO"
+                    name="PROPIETARIO">
+                  <label for="propietario">PROPIETARIO</label>
+                </div>
+              </div>
+              <div class="col-md-12 mb-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control shadow-none" id="solicitadopor" placeholder="SOLICITADO POR"
+                    name="SOLICITADOPOR">
+                  <label for="solicitadopor">SOLICITADO POR</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating">
+                  <input type="text" class="form-control shadow-none" id="conyuge" placeholder="CONYUGE" name="CONYUGE">
+                  <label for="conyuge">CONYUGE</label>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="form-floating">
-              <input type="text" class="form-control shadow-none" id="propietario" placeholder="PROPIETARIO"
-                name="PROPIETARIO">
-              <label for="propietario">PROPIETARIO</label>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating">
+                  <textarea class="form-control shadow-none observaciones" placeholder="OBSERVACIONES" id="observacuibes"
+                    style="height: 100px"></textarea>
+                  <label for="observacuibes">OBSERVACIONES</label>
+                </div>
+              </div>
+              <div class="col-md-3 mt-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control shadow-none" id="total" placeholder="IMPORTA DE PAGO"
+                    name="IMPORTADEPAGO">
+                  <label for="total">IMPORTA DE PAGO</label>
+                </div>
+              </div>
+              <div class="col-md-9 mt-5 d-flex align-items-center justify-content-end">
+                <button class="btn btn-primary d-flex align-items-center" placement="bottom" ngbTooltip="Guardar"><i
+                    class='bx bxs-save mx-1'></i> Guardar</button>
+              </div>
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-floating">
-              <input type="text" class="form-control shadow-none" id="solicitadopor" placeholder="SOLICITADO POR"
-                name="SOLICITADOPOR">
-              <label for="solicitadopor">SOLICITADO POR</label>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-floating">
-              <input type="text" class="form-control shadow-none" id="conyuge" placeholder="CONYUGE" name="CONYUGE">
-              <label for="conyuge">CONYUGE</label>
-            </div>
-          </div>
-        </div>
-        <div class="row fila py-3">
-          <div class="col-md-12">
-            <div class="form-floating">
-              <textarea class="form-control shadow-none" placeholder="OBSERVACIONES" id="observacuibes"
-                style="height: 100px"></textarea>
-              <label for="observacuibes">OBSERVACIONES</label>
-            </div>
-          </div>
-        </div>
-        <div class="row fila py-3">
-          <div class="col-md-3">
-            <div class="form-floating">
-              <input type="text" class="form-control shadow-none" id="total" placeholder="IMPORTA DE PAGO"
-                name="IMPORTADEPAGO">
-              <label for="total">IMPORTA DE PAGO</label>
-            </div>
-          </div>
-          <div class="col-md-9 d-flex align-items-center justify-content-end">
-            <button class="btn btn-primary d-flex align-items-center" placement="bottom" ngbTooltip="Guardar"><i
-                class='bx bxs-save mx-1'></i> Guardar</button>
           </div>
         </div>
       </div>

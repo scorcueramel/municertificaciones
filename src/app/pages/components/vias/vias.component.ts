@@ -21,9 +21,7 @@ export class ViasComponent  {
     private _tiposHabUrb: TiposHabilitacionesUrbanasService,
     private _tiposVias: TiposViasService,
     private _consultas: ConsultasService,
-    private _swal: SwalService,
-    private render2: Renderer2,
-    private elementRef: ElementRef
+    private _swal: SwalService
   ) {}
 
   // Validador de carga del sevicio para los selects

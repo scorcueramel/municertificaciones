@@ -113,6 +113,7 @@ export class CertificadosNumeracionComponent implements OnDestroy {
           this.cabecerasYfooterTabla = [
             'OPC.',
             'AÑO',
+            'FECHA',
             'N° CERTIFICADO',
             'ESTADO',
             'EXPEDIENTE',

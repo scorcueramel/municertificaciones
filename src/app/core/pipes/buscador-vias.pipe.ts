@@ -16,18 +16,16 @@ export class BuscadorViasPipe implements PipeTransform {
     let results: any[] = [];
 
     items.forEach(function (i) {
-      // if(i.VCHCURDESCRIPCION1 != undefined){
         if (
           i.CHRCURCODIGO.includes(searchText) ||
           i.VCHTCUDESCRIPCION.includes(searchText) ||
-          i.VCHCURDESCRIPCION1.includes(searchText) ||
+          i.VCHCURDESCRIPCION.includes(searchText) ||
           i.VCHVIACODIGO.includes(searchText) ||
           i.VCHTVIDESCRIPCION.includes(searchText) ||
           i.VCHVIADESCRIPCION.includes(searchText)
           ) {
             results.push(i);
           }
-      // }
     });
     return results;
   }

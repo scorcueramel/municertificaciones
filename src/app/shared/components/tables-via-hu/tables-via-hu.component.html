@@ -1,15 +1,41 @@
 <!-- Bootstrap Table with Header - Footer -->
-<div class="card border-0 shadow p-3 mb-5 bg-body-tertiary rounded">
+<div class="row mb-4" *ngIf="!identificador">
+  <div class="col-md-12">
+    <div class="card border-0">
+      <div class="card-body">
+        <div class="row d-flex align-items-center">
+          <div class="col-md-9">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="hu-via" placeholder="HABILITACIÓN URBANA / VÍA"
+                maxlength="25" disabled [(ngModel)]="habilitacionVia">
+              <label for="hu-via" class="form__label__exp__num">HABILITACIÓN URBANA / VÍA</label>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-floating">
+              <select class="form-select shadow-none" id="cuadras" aria-label="CUADRAS" disabled>
+                <option selected value="">(TODOS)</option>
+              </select>
+              <label for="cuadras">CUADRAS</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card border-0 shadow p-3 mb-3 bg-body-tertiary rounded">
   <h5 class="card-header">
     <div class="row">
-      <div class="col-md-5 mt-3">
+      <div class="col-md-5">
         <div class="input-group input-group-merge">
           <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-          <input type="text" class="form-control" placeholder="Búscar Sobre Tus Resultados." placement="top"
-          ngbTooltip="Busca sobre tus resultados!" [(ngModel)]="searchText"
-          oninput="this.value = this.value.toUpperCase()" />
+          <input type="text" class="form-control buscador" placeholder="Búscar Sobre Tus Resultados." placement="top"
+            ngbTooltip="Busca sobre tus resultados!" [(ngModel)]="searchText"
+            oninput="this.value = this.value.toUpperCase()" />
           <button class="btn btn-danger" data-bs-toggle="tooltip" title="Limpiar filtro" (click)="limpiarFiltro();"
-          placement="right" ngbTooltip="Limpiar filtro"><i class='bx bxs-eraser'></i></button>
+            placement="right" ngbTooltip="Limpiar filtro"><i class='bx bxs-eraser'></i></button>
         </div>
       </div>
       <div class="col-md-4 mt-3">
@@ -17,7 +43,8 @@
       </div>
 
       <div class="col-md-3 d-flex justify-content-end" *ngIf="identificador">
-        <button type="button" class="btn btn-success my-3 mx-3 card__button__export" #formButtonExport (click)="exportarExcel();">
+        <button type="button" class="btn btn-success my-3 mx-3 card__button__export" #formButtonExport
+          (click)="exportarExcel();">
           <img src="./assets/img/icons/export_excel.svg" width="19px">&nbsp; Exportar
         </button>
       </div>
@@ -32,6 +59,16 @@
       </thead>
       <tbody class="table-border-bottom-0">
         <tr *ngFor="let cuerpo of cuerpoTabla | buscadorVias : searchText">
+          <td *ngIf="!identificador">
+            <button type="button" class="btn btn-primary btn-sm" placement="top" ngbTooltip="Listar Lotes"
+              (click)="openListarLotes(content1,cuerpo)">
+              <i class='bx bx-list-ol'></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-primary mx-2" placement="top" ngbTooltip="Búscar Lotes"
+              (click)="openBuscarLotes(content2)">
+              <i class='bx bxs-file-find'></i>
+            </button>
+          </td>
           <td>{{ cuerpo.CHRCURCODIGO }}</td><!--COD DE HAB-->
           <td>{{ cuerpo.VCHTCUDESCRIPCION }}</td><!--TIPO DE HAB-->
           <td>{{ cuerpo.VCHCURDESCRIPCION }}</td><!--NOMBRE DE HAB-->
@@ -49,3 +86,156 @@
   </div>
 </div>
 <!-- Bootstrap Table with Header - Footer -->
+
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Lista de Lotes</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+      (click)="modal.dismiss('Cross click'); withOutFocus()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="overflow-y-scroll alto">
+          <table class="table table-bordered table-striped tabla-izquierda">
+            <thead>
+              <tr>
+                <th colspan="7" class="text-center">LADO IZQUIERDO</th>
+              </tr>
+              <tr class="text-center">
+                <th>Cdra.</th>
+                <th>Mz.</th>
+                <th>Lt.</th>
+                <th>SLt.</th>
+                <th>Rgo. Inf.</th>
+                <th>Rgo. Sup.</th>
+                <th>Cód. Lot.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="overflow-y-scroll alto">
+          <table class="table table-bordered table-striped tabla-derecha">
+            <thead>
+              <tr>
+                <th colspan="7" class="text-center">LADO DERECHO</th>
+              </tr>
+              <tr>
+                <th>Cdra.</th>
+                <th>Mz.</th>
+                <th>Lt.</th>
+                <th>SLt.</th>
+                <th>Rgo. Inf.</th>
+                <th>Rgo. Sup.</th>
+                <th>Cód. Lot.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-secondary"
+      (click)="modal.close('Close click'); withOutFocus()">Cancelar</button>
+  </div>
+</ng-template>
+
+<ng-template #content2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Manzanas y Lotes</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+      (click)="modal.dismiss('Cross click'); withOutFocus()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input type="text" class="form-control shadow-none" id="haburbana" placeholder="HABILITACIÓN URBANA"
+                name="HABURBANA" disabled>
+              <label for="haburbana">HABILITACIÓN URBANA</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating">
+              <select class="form-select shadow-none" id="vias" aria-label="(TODOS)">
+                <option selected value="">(TODOS)</option>
+              </select>
+              <label for="vias">Vía</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="overflow-y-scroll alto">
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action rounded-0 active cabecera" aria-current="true">
+              Mz.
+            </button>
+            <button type="button" class="list-group-item list-group-item-action">A</button>
+            <button type="button" class="list-group-item list-group-item-action">B</button>
+            <button type="button" class="list-group-item list-group-item-action rounded-0">C</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="overflow-y-scroll alto">
+          <table class="table table-bordered table-striped tabla-izquierda tabla_mz_lte">
+            <thead>
+              <tr class="text-center">
+                <th>Lote</th>
+                <th>Sub-Lote</th>
+                <th>Cód. Vía</th>
+                <th>Vía Circundante</th>
+                <th>Lado</th>
+                <th>Cdra.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-secondary"
+      (click)="modal.close('Close click'); withOutFocus()">Cancelar</button>
+  </div>
+</ng-template>

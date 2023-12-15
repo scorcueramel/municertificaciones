@@ -31,6 +31,35 @@
   height: 930px;
 }
 
+.table_certificado{
+  max-height: 600px;
+  border: 2px solid #005ea5;
+}
+
+#table_certificados thead {
+  position: sticky;
+  top: -5px;
+  z-index: 1;
+}
+
+.table_certificado::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+.table_certificado::-webkit-scrollbar:horizontal {
+  height: 8px; /* width of the entire scrollbar */
+}
+
+.table_certificado::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+.table_certificado::-webkit-scrollbar-thumb {
+  background-color: #005ea5; /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  /* border: 3px solid #005ea5;  creates padding around scroll thumb */
+}
+
 @media (max-width: 1200px) {
   .contenedor__pdf {
     width: 768px;

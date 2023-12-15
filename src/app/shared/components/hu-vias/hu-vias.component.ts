@@ -104,6 +104,7 @@ export class HuViasComponent {
           this.identificador = false;
           this.tituloTabla = 'HABILITACIONES URBANAS Y VÍAS';
           this.cabecerasYfooterTabla = [
+            'OPC.',
             'COD. HAB.',
             'TIPO DE HABILITACIÓN',
             'NOMBRE DE HABILITACIÓN',

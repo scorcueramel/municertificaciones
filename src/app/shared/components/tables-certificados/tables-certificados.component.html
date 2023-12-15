@@ -19,7 +19,7 @@
       </div>
     </div>
   </h5>
-  <div class="table-responsive text-nowrap">
+  <div class="table-responsive text-nowrap table_certificado">
     <table class="table table-hover" id="table_certificados" #tableHu>
       <thead>
         <tr>
@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        <tr *ngFor="let cuerpo of cuerpoTabla | buscadorHu : searchText">
+        <tr *ngFor="let cuerpo of cuerpoTabla | buscadorCertificaciones : searchText">
           <td>
             <button (click)="imprimir(cuerpo.INTCERCODIGO, content)" class="btn btn-sm btn-primary" placement="top"
               ngbTooltip="Imprimir">
@@ -41,11 +41,15 @@
             </button>
           </td>
           <td>{{ cuerpo.CHRCERANIO }}</td>
-          <td>{{ cuerpo.TXTNUMCER }}</td>
+          <td>{{ cuerpo.DATCERFECHA }}</td>
+          <td>{{ cuerpo.VCHCERNUMERO }}</td>
           <td class="text-center">
-            <span class="badge text-bg-success" placement="top" ngbTooltip="ACTIVO">
+            <span class="badge text-bg-success"
+            >
+            <!-- <span class="badge text-bg-success" placement="top" ngbTooltip="ACTIVO"> -->
               <!-- <i class='bx bxs-x-square'></i> -->
-              <i class='bx bxs-check-square'></i>
+              <!-- <i class='bx bxs-check-square'></i> -->
+              <small>ACTIVO</small>
             </span>
           </td>
           <td>{{ cuerpo.VCHNUMEXP }}</td>
@@ -70,7 +74,7 @@
   <div class="modal-body">
     <div class="row">
       <div class="col-12 d-flex justify-content-end">
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')" autofocus></button>
       </div>
       <div class="col-12">
         <object type="application/pdf" [data]="rutaPDF | safeUrls" class="contenedor__pdf">

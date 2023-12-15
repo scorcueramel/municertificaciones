@@ -7,7 +7,7 @@
       </div>
 
       <div class="col-md-6 mt-3">
-        <div class="input-group input-group-merge">
+        <div class="input-group input-group-merge" *ngIf="cuerpoTabla.length > 10">
           <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
           <input type="text" class="form-control" placeholder="Búscar Sobre Tus Resultados." placement="top"
           ngbTooltip="Busca sobre tus resultados!" [(ngModel)]="searchText"
@@ -23,7 +23,7 @@
       </div>
     </div>
   </h5>
-  <div class="table-responsive text-nowrap">
+  <div class="table-responsive text-nowrap tabla">
     <table class="table table-hover" id="table_hu" #tableHu>
       <thead>
         <tr>
