@@ -28,23 +28,23 @@
 }
 
 .alto {
-  height: 250px;
+  max-height: 500px;
   border: 2px solid #005ea5;
 }
 
-.alto::-webkit-scrollbar, .tabla::-webkit-scrollbar {
-  width: 12px; /* width of the entire scrollbar */
+.alto::-webkit-scrollbar, .tabla::-webkit-scrollbar, .alto::-webkit-scrollbar {
+  width: 8px; /* width of the entire scrollbar */
 }
 
-.alto::-webkit-scrollbar:horizontal, .tabla::-webkit-scrollbar:horizontal {
+.alto::-webkit-scrollbar:horizontal, .tabla::-webkit-scrollbar:horizontal, .alto::-webkit-scrollbar:horizontal {
   height: 8px; /* width of the entire scrollbar */
 }
 
-.alto::-webkit-scrollbar-track, .tabla::-webkit-scrollbar-track {
+.alto::-webkit-scrollbar-track, .tabla::-webkit-scrollbar-track, .alto::-webkit-scrollbar-track {
   background: transparent; /* color of the tracking area */
 }
 
-.alto::-webkit-scrollbar-thumb, .tabla::-webkit-scrollbar-thumb {
+.alto::-webkit-scrollbar-thumb, .tabla::-webkit-scrollbar-thumb, .alto::-webkit-scrollbar-thumb {
   background-color: #005ea5; /* color of the scroll thumb */
   border-radius: 20px; /* roundness of the scroll thumb */
   /* border: 3px solid #005ea5;  creates padding around scroll thumb */
@@ -60,15 +60,20 @@
   background-color: #e43f36;
   color: #fff;
   font-weight: bold;
-  position: sticky;
-  top: -5px;
-  z-index: 1;
 }
 
 .tabla-derecha > thead > tr > th {
   background-color: #1958be;
   color: #fff;
   font-weight: bold;
+}
+.tabla-izquierda > thead  {
+  position: sticky;
+  top: -5px;
+  z-index: 1;
+}
+
+.tabla-derecha > thead  {
   position: sticky;
   top: -5px;
   z-index: 1;

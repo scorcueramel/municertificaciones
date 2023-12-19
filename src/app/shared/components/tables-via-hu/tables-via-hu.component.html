@@ -1,30 +1,5 @@
 <!-- Bootstrap Table with Header - Footer -->
-<div class="row mb-4" *ngIf="!identificador">
-  <div class="col-md-12">
-    <div class="card border-0">
-      <div class="card-body">
-        <div class="row d-flex align-items-center">
-          <div class="col-md-9">
-            <div class="form-floating">
-              <input type="text" class="form-control shadow-none" id="hu-via" placeholder="HABILITACIÓN URBANA / VÍA"
-                maxlength="25" disabled [(ngModel)]="habilitacionVia">
-              <label for="hu-via" class="form__label__exp__num">HABILITACIÓN URBANA / VÍA</label>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-floating">
-              <select class="form-select shadow-none" id="cuadras" aria-label="CUADRAS" disabled>
-                <option selected value="">(TODOS)</option>
-              </select>
-              <label for="cuadras">CUADRAS</label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- TABLA RESULTANTE DE LA BÚSQUEDA DE PADRÓN-->
 <div class="card border-0 shadow p-3 mb-3 bg-body-tertiary rounded">
   <h5 class="card-header">
     <div class="row">
@@ -61,11 +36,11 @@
         <tr *ngFor="let cuerpo of cuerpoTabla | buscadorVias : searchText">
           <td *ngIf="!identificador">
             <button type="button" class="btn btn-primary btn-sm" placement="top" ngbTooltip="Listar Lotes"
-              (click)="openListarLotes(content1,cuerpo)">
+              (click)="openListarLotes(content1, cuerpo);">
               <i class='bx bx-list-ol'></i>
             </button>
             <button type="button" class="btn btn-sm btn-primary mx-2" placement="top" ngbTooltip="Búscar Lotes"
-              (click)="openBuscarLotes(content2)">
+              (click)="openBuscarLotes(content2, cuerpo)">
               <i class='bx bxs-file-find'></i>
             </button>
           </td>
@@ -94,15 +69,43 @@
       (click)="modal.dismiss('Cross click'); withOutFocus()"></button>
   </div>
   <div class="modal-body">
+    <div class="row mb-4" *ngIf="!identificador">
+      <div class="col-md-12">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="row d-flex align-items-center">
+              <div class="col-md-9">
+                <div class="form-floating">
+                  <input type="text" class="form-control shadow-none" id="hu-via"
+                    placeholder="HABILITACIÓN URBANA / VÍA" maxlength="25" disabled [(ngModel)]="habilitacionVia">
+                  <label for="hu-via" class="form__label__exp__num">HABILITACIÓN URBANA / VÍA</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-floating">
+                  <select class="form-select shadow-none" id="cuadras" aria-label="CUADRAS"
+                    (change)="habilitacionPorCuadra($any($event))">
+                    <option selected value="">(TODOS)</option>
+                    <option *ngFor="let c of cuadras" [value]="c">{{ c }}</option>
+                  </select>
+                  <label for="cuadras">CUADRAS</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <div class="overflow-y-scroll alto">
           <table class="table table-bordered table-striped tabla-izquierda">
             <thead>
               <tr>
-                <th colspan="7" class="text-center">LADO IZQUIERDO</th>
+                <th colspan="8" class="text-center">LADO IZQUIERDO</th>
               </tr>
               <tr class="text-center">
+                <th>Opc.</th>
                 <th>Cdra.</th>
                 <th>Mz.</th>
                 <th>Lt.</th>
@@ -113,14 +116,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let derecha of ladoDerecho;">
+                <td>
+                  <button type="button" class="btn btn-sm btn-primary" placement="top" ngbTooltip="Seleccionar" (click)="openSeleccionRangos(content3, derecha)">
+                    <i class='bx bxs-message-square-check'></i>
+                  </button>
+                </td>
+                <td>{{ derecha.VCHRANCUADRA }}</td>
+                <td>{{ derecha.VCHMZANUMERO }}</td>
+                <td>{{ derecha.VCHLOTNUMERO }}</td>
+                <td>{{ derecha.VCHSLTNUMERO }}</td>
+                <td>{{ derecha.SMLRANINFERIOR }}</td>
+                <td>{{ derecha.SMLRANSUPERIOR }}</td>
+                <td>{{ derecha.VCHLOTCODIGO }}</td>
+              </tr>
+              <tr *ngIf="ladoDerecho.length <= 0">
+                <td colspan="8" class="text-center">---</td>
               </tr>
             </tbody>
           </table>
@@ -131,9 +142,10 @@
           <table class="table table-bordered table-striped tabla-derecha">
             <thead>
               <tr>
-                <th colspan="7" class="text-center">LADO DERECHO</th>
+                <th colspan="8" class="text-center">LADO DERECHO</th>
               </tr>
               <tr>
+                <th>Opc.</th>
                 <th>Cdra.</th>
                 <th>Mz.</th>
                 <th>Lt.</th>
@@ -144,14 +156,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+              <tr *ngFor="let izquirda of ladoIzquierdo">
+                <td>
+                  <button type="button" class="btn btn-sm btn-primary" placement="top" ngbTooltip="Seleccionar" (click)="openSeleccionRangos(content3, izquirda)">
+                    <i class='bx bxs-message-square-check'></i>
+                  </button>
+                </td>
+                <td>{{ izquirda.VCHRANCUADRA }}</td>
+                <td>{{ izquirda.VCHMZANUMERO }}</td>
+                <td>{{ izquirda.VCHLOTNUMERO }}</td>
+                <td>{{ izquirda.VCHSLTNUMERO }}</td>
+                <td>{{ izquirda.SMLRANINFERIOR }}</td>
+                <td>{{ izquirda.SMLRANSUPERIOR }}</td>
+                <td>{{ izquirda.VCHLOTCODIGO }}</td>
+              </tr>
+              <tr *ngIf="ladoIzquierdo.length <= 0">
+                <td colspan="8" class="text-center">---</td>
               </tr>
             </tbody>
           </table>
@@ -160,8 +180,9 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-sm btn-secondary"
-      (click)="modal.close('Close click'); withOutFocus()">Cancelar</button>
+    <button type="button" class="btn btn-sm btn-secondary" (click)="modal.close('Close click'); withOutFocus()">
+      Cancelar
+    </button>
   </div>
 </ng-template>
 
@@ -178,7 +199,7 @@
           <div class="col-md-6">
             <div class="form-floating">
               <input type="text" class="form-control shadow-none" id="haburbana" placeholder="HABILITACIÓN URBANA"
-                name="HABURBANA" disabled>
+                name="HABURBANA" [(ngModel)]="habilitacionVia" disabled>
               <label for="haburbana">HABILITACIÓN URBANA</label>
             </div>
           </div>
@@ -186,6 +207,7 @@
             <div class="form-floating">
               <select class="form-select shadow-none" id="vias" aria-label="(TODOS)">
                 <option selected value="">(TODOS)</option>
+                <option [value]="via.VCHVIACODIGO" *ngFor="let via of cuerpoTabla">{{ via.VCHVIADESCRIPCION }}</option>
               </select>
               <label for="vias">Vía</label>
             </div>
@@ -197,12 +219,11 @@
       <div class="col-md-3">
         <div class="overflow-y-scroll alto">
           <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action rounded-0 active cabecera" aria-current="true">
+            <button type="button" class="list-group-item list-group-item-action rounded-0 active cabecera"
+              aria-current="true">
               Mz.
             </button>
-            <button type="button" class="list-group-item list-group-item-action">A</button>
-            <button type="button" class="list-group-item list-group-item-action">B</button>
-            <button type="button" class="list-group-item list-group-item-action rounded-0">C</button>
+            <button type="button" class="list-group-item list-group-item-action" *ngFor="let manzana of manzanas" >{{ manzana }}</button>
           </div>
         </div>
       </div>
@@ -235,7 +256,31 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-sm btn-secondary"
-      (click)="modal.close('Close click'); withOutFocus()">Cancelar</button>
+    <button type="button" class="btn btn-sm btn-secondary" (click)="modal.close('Close click'); withOutFocus()">
+      Cancelar
+    </button>
+  </div>
+</ng-template>
+
+
+<ng-template #content3 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Selección de Rangos</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+      (click)="modal.dismiss('Cross click'); withOutFocus()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="row">
+          {{ IPadronRespuesta | json}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-secondary" (click)="modal.close('Close click'); withOutFocus()">
+      Cancelar
+    </button>
   </div>
 </ng-template>
